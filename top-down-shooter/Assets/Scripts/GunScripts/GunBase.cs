@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunBase : MonoBehaviour
+public class GunBase
 {
+    public static GunBase[] allGuns;
     public float Damage { get; }
     public LayerMask TargetLayer { get; }
     public float FireRate { get; }
@@ -15,9 +16,5 @@ public class GunBase : MonoBehaviour
     public void Fire()
 	{
 
-	}
-	private void FixedUpdate()
-	{
-		
 	}
 }
