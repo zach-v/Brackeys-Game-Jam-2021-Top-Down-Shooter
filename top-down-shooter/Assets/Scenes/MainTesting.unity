@@ -1811,7 +1811,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c400e4d1b870ff4cb96bcbcc24fb4a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GunList: []
+  GunList:
+  - name: Pistol
+    Damage: 1
+    TargetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    FireRate: 0
+    SingleFire: 1
+    TracerEffect: {fileID: 0}
+    Impact: {fileID: 0}
 --- !u!1 &1983664223
 GameObject:
   m_ObjectHideFlags: 0
@@ -1842,12 +1851,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: Dirt_Jogging-1
+    clip: {fileID: 8300000, guid: 0335c353bb759d94a964672580b84904, type: 3}
+    volume: 0.8
+    pitch: 1
     loop: 0
-    audioMixer: {fileID: 0}
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    source: {fileID: 0}
+  - name: Dirt_Jogging-2
+    clip: {fileID: 8300000, guid: 194da6df2f686c54b97f682f2d8d2460, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    source: {fileID: 0}
+  - name: Dirt_Jogging-3
+    clip: {fileID: 8300000, guid: 4e654e4ec0a578b47b90dec0c1f3b8a1, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    source: {fileID: 0}
+  - name: Dirt_Jogging-4
+    clip: {fileID: 8300000, guid: f5b9e4f5afa3336479631e9b3477a862, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    source: {fileID: 0}
+  - name: Dirt_Jogging-5
+    clip: {fileID: 8300000, guid: a2d9b360fef6027478a70cc21b552cb2, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   normalVolume: {fileID: 0}
   lowPass: {fileID: 0}
