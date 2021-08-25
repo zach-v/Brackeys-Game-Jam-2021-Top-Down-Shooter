@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WeaponManager : MonoBehaviour
+public class ItemManager : MonoBehaviour
 {
 	public Gun[] GunList;
 }

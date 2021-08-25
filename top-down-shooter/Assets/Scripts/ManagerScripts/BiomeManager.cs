@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class BiomeManager : MonoBehaviour
 {
+	public enum Biome
+	{
+		Planes, Swamp, Forest, Hell
+	}
 	public float frequency = 1;
 	public float amplitude = 1;
 
@@ -18,5 +22,10 @@ public class BiomeManager : MonoBehaviour
 	void Update()
 	{
 
+	}
+
+	public Biome GetBiomeAt(Vector3 position)
+	{
+		return Biome.Planes;
 	}
 }

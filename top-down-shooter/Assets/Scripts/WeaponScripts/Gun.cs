@@ -4,18 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Gun
+public class Gun : WeaponBase
 {
-	public string name;
+	public enum SpecialMethod
+	{
+		None, SillySound
+	}
 	public float Damage;
-	public LayerMask TargetLayer;
 	public float FireRate;
 	public bool SingleFire;
+	public GameObject WeaponModel;
+	public GameObject FireEffect;
 	public GameObject TracerEffect;
 	public GameObject Impact;
-	public Action SpecialMethod;
-	public void Fire()
-	{
-
-	}
+	public SpecialMethod method = SpecialMethod.None;
 }

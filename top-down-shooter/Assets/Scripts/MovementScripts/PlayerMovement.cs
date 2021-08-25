@@ -7,12 +7,13 @@ public class PlayerMovement : MonoBehaviour
 	public CharacterController controller;
 	public Camera cam;
 	public float moveSpeed = 5f;
+	public float gravity = 10;
 	[Range(0, 1)] public float accelerationTime = 0.15f;
 	public float degreeOffset = 90f;
 
 	[Header("Internal Variables")]
 	private float currentSpeed = 0;
-	[ReadOnly] [SerializeField] private Vector2 movement;
+	[ReadOnly] public Vector2 movement;
 	[ReadOnly] [SerializeField] private Vector3 mousePos;
 	[ReadOnly] [SerializeField] private float angle = 0;
 	[ReadOnly] [SerializeField] private string DisplaySpeed = "0.0";
@@ -27,15 +28,18 @@ public class PlayerMovement : MonoBehaviour
 
 	void FixedUpdate()
 	{
+		// Store current movement variables
+		currentSpeed = controller.velocity.magnitude;
+		DisplaySpeed = currentSpeed.ToString("0.0");
+
 		// Movement
 		if (movement.magnitude >= 0.1f)
 		{
 			Vector3 direction = new Vector3(movement.x, 0, movement.y).normalized;
 			controller.Move(direction * Mathf.Lerp(currentSpeed, moveSpeed, accelerationTime) * Time.fixedDeltaTime);
-			currentSpeed = controller.velocity.magnitude;
-			DisplaySpeed = currentSpeed.ToString("0.0");
 		}
 
+		// Rotation
 		Ray rayFromMouse = cam.ScreenPointToRay(mousePos);
 		if (Physics.Raycast(rayFromMouse, out RaycastHit hitInfo, 300f))
 		{
