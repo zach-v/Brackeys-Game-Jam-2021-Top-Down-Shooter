@@ -3,7 +3,9 @@ guid: 191875a23c120eb47b0063642ace7b13
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - normalVolume: {fileID: 24500006, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+  - lowPass: {fileID: -7746596214534304524, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
