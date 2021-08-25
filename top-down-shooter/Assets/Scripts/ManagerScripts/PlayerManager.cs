@@ -80,7 +80,17 @@ public class PlayerManager : MonoBehaviour
 		}
 		return true;
 	}
-	void FixedUpdate()
+	private void Update()
+	{
+		if (Input.GetButton("Fire1"))
+		{
+			if (currentGun.SingleFire)
+			{
+
+			}
+		}
+	}
+	private void FixedUpdate()
 	{
 		if (movement.movement.magnitude >= 0.1)
 			currentTimeToSound += Time.fixedDeltaTime;
