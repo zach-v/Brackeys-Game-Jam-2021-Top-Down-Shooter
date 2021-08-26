@@ -1,6 +1,7 @@
 ﻿using UnityEngine.Audio;
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class AudioManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class AudioManager : MonoBehaviour
 	public AudioMixerSnapshot normalVolume;
 	public AudioMixerSnapshot lowPass;
 	public AudioMixerSnapshot reverb;
+	[ReadOnly] public Sound CurrentMusic = null;
 	public FilterState CurrentState = FilterState.Normal;
 	public enum FilterState { Normal, LowPass, Reverb }
 
@@ -27,10 +29,33 @@ public class AudioManager : MonoBehaviour
 
 	public void Play(string name)
 	{
-		Sound s = Array.Find(sounds, sound => sound.name == name);
-		s.source.Play();
+		try
+		{
+			Sound s = Array.Find(sounds, sound => sound.name == name);
+			s.source.Play();
+			if (s.isMusic)
+				if (CurrentMusic != null)
+				{
+					Stop(CurrentMusic.name);
+					CurrentMusic = s;
+				}
+				else
+					CurrentMusic = s;
+		}
+		catch (Exception e)
+		{
+			Debug.Log($"Unable to play sound: {name}, because {e.Message}");
+		}
 	}
-
+	private IEnumerator FadeAudio(Sound sound)
+	{
+		for (float i = sound.volume; i >= 0; i -= 0.1f)
+		{
+			sound.source.volume = i;
+			yield return new WaitForSeconds(0.1f);
+		}
+		sound.source.Stop();
+	}
 	public void Stop(string name)
 	{
 		Sound s = Array.Find(sounds, sound => sound.name == name);

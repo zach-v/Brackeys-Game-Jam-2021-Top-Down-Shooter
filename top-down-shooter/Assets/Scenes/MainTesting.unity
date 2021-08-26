@@ -1699,6 +1699,48 @@ MonoBehaviour:
     Impact: {fileID: 1384676760634654, guid: 289ba3245c9c98c42aeb93d5f45a2248, type: 3}
     ActiveBullets: []
     method: 0
+  - Name: Shotgun
+    TargetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    UsageRate: 1200
+    RecentlyUsed: 0
+    TimeSinceUsed: 0
+    Damage: 5
+    ShotCount: 10
+    spread: 10
+    SingleFire: 1
+    HitScan: 1
+    FireSoundName: shotgun-1
+    WeaponModel: {fileID: 919132149155446097, guid: 4b877973400fa08419fa3e52bb524bed, type: 3}
+    projectile: {fileID: 0}
+    FireEffect: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
+    TracerEffect: {fileID: 1130945418854432, guid: a7a6023a6802b1f40870e07f85b5b985, type: 3}
+    TracerEffectTime: 2
+    Impact: {fileID: 1384676760634654, guid: 289ba3245c9c98c42aeb93d5f45a2248, type: 3}
+    ActiveBullets: []
+    method: 0
+  - Name: LaserPistol
+    TargetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    UsageRate: 1200
+    RecentlyUsed: 0
+    TimeSinceUsed: 0
+    Damage: 80
+    ShotCount: 1
+    spread: 2
+    SingleFire: 1
+    HitScan: 1
+    FireSoundName: laser-1
+    WeaponModel: {fileID: 919132149155446097, guid: 3753b585bb117b24bbfaf8718fc2eb4c, type: 3}
+    projectile: {fileID: 0}
+    FireEffect: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
+    TracerEffect: {fileID: 1062685050423962, guid: 3536bfd57b96d984896616db8a104ad4, type: 3}
+    TracerEffectTime: 2
+    Impact: {fileID: 1384676760634654, guid: 289ba3245c9c98c42aeb93d5f45a2248, type: 3}
+    ActiveBullets: []
+    method: 0
 --- !u!1 &1983664223
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,6 +1776,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Dirt_Jogging-2
@@ -1741,6 +1784,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Dirt_Jogging-3
@@ -1748,6 +1792,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Dirt_Jogging-4
@@ -1755,6 +1800,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Dirt_Jogging-5
@@ -1762,6 +1808,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Dirt_Running-1
@@ -1769,6 +1816,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Dirt_Running-2
@@ -1776,6 +1824,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Dirt_Running-3
@@ -1783,6 +1832,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Dirt_Running-4
@@ -1790,6 +1840,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Dirt_Running-5
@@ -1797,6 +1848,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Puddle_Running-1
@@ -1804,6 +1856,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Puddle_Running-2
@@ -1811,6 +1864,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Puddle_Running-3
@@ -1818,6 +1872,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Puddle_Running-4
@@ -1825,6 +1880,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Puddle_Running-5
@@ -1832,6 +1888,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Puddle_Walking-1
@@ -1839,6 +1896,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Puddle_Walking-2
@@ -1846,6 +1904,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Puddle_Walking-3
@@ -1853,6 +1912,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Puddle_Walking-4
@@ -1860,6 +1920,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Puddle_Walking-5
@@ -1867,6 +1928,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Sand_Boots_Running-1
@@ -1874,6 +1936,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Sand_Boots_Running-2
@@ -1881,6 +1944,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Sand_Boots_Running-3
@@ -1888,6 +1952,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Sand_Boots_Running-4
@@ -1895,6 +1960,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Sand_Boots_Running-5
@@ -1902,6 +1968,7 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: Sand_Boots_Running-6
@@ -1909,13 +1976,15 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: pistol-1
     clip: {fileID: 8300000, guid: 9bdee181a71250346b7d5471acc70f83, type: 3}
     volume: 0.8
-    pitch: 0.85
+    pitch: 0.7
     loop: 0
+    isMusic: 0
     audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   - name: pistol-2
@@ -1923,11 +1992,37 @@ MonoBehaviour:
     volume: 0.8
     pitch: 0.85
     loop: 0
+    isMusic: 0
+    audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    source: {fileID: 0}
+  - name: shotgun-1
+    clip: {fileID: 8300000, guid: 2e8bd9bb009158148a2b73ef65a71e4c, type: 3}
+    volume: 0.7
+    pitch: 0.85
+    loop: 0
+    isMusic: 0
+    audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    source: {fileID: 0}
+  - name: laser-1
+    clip: {fileID: 8300000, guid: 95eb9f106585d0744ba2c3ed006c5e6c, type: 3}
+    volume: 0.7
+    pitch: 1.2
+    loop: 0
+    isMusic: 0
     audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   normalVolume: {fileID: 24500006, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
   lowPass: {fileID: -7746596214534304524, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
   reverb: {fileID: 68490754482701386, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+  CurrentMusic:
+    name: 
+    clip: {fileID: 0}
+    volume: 90
+    pitch: 1
+    loop: 0
+    isMusic: 0
+    audioMixer: {fileID: 0}
+    source: {fileID: 0}
   CurrentState: 0
 --- !u!4 &1983664225
 Transform:
