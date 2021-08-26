@@ -1,5 +1,7 @@
+using Assets.Scripts.Components;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static BiomeManager;
 
@@ -27,6 +29,7 @@ public class PlayerManager : MonoBehaviour
 	[ReadOnly] [SerializeField] private float currentTimeToSound = 0;
 	[ReadOnly] [SerializeField] private int numberOfJogSounds = 0;
 	[ReadOnly] [SerializeField] private int numberOfRunSounds = 0;
+	[ReadOnly] [SerializeField] private bool continueToFire = true;
 
 	public PlayerManager()
 	{
@@ -53,16 +56,18 @@ public class PlayerManager : MonoBehaviour
 	}
 	private void SetCurrentGun(int index)
 	{
+		// Remove previous item
 		Destroy(ItemInHand);
+		// Add new one based on index
 		currentGun = currentGunInventory[index];
 		ItemInHand = Instantiate(currentGun.WeaponModel, GunPoint.position, Quaternion.Euler(GunPoint.rotation.eulerAngles + RotationOffset), transform);
 	}
-	private int CurrentIndexOfType<T>() where T : WeaponBase
+	private int GetIndexOfType<T>(T weapon) where T : WeaponBase
 	{
 		if (typeof(T).IsEquivalentTo(typeof(Gun)))
-			return currentGunInventory.IndexOf(currentGun);
+			return currentGunInventory.IndexOf(weapon as Gun);
 		if (typeof(T).IsEquivalentTo(typeof(Grenade)))
-			return currentGrenadeInventory.IndexOf(currentGrenade);
+			return currentGrenadeInventory.IndexOf(weapon as Grenade);
 		return -1;
 	}
 	public bool AddWeapon(WeaponBase weapon)
@@ -82,11 +87,66 @@ public class PlayerManager : MonoBehaviour
 	}
 	private void Update()
 	{
-		if (Input.GetButton("Fire1"))
+		// if not recently used
+		if (!currentGun.RecentlyUsed)
 		{
-			if (currentGun.SingleFire)
+			if (Input.GetButton("Fire1") && continueToFire)
 			{
-
+				// If the weapon is hitscan
+				if (currentGun.HitScan)
+				{
+					// For all shots in a single fire operation
+					for (int i = 0; i < currentGun.ShotCount; i++)
+					{
+						// Create some variation in spread
+						Vector3 bulletSpread = new Vector3(Random.Range(-currentGun.spread, currentGun.spread),
+							Random.Range(-currentGun.spread, currentGun.spread), Random.Range(-currentGun.spread, currentGun.spread));
+						// Make a new gameobject for the tracers
+						GameObject newBullet = Instantiate(currentGun.TracerEffect, GunPoint.position, Quaternion.Euler(GunPoint.rotation.eulerAngles + bulletSpread));
+						// Attach die after time to it and set the time
+						killSelf killSelfComponent = newBullet.AddComponent(typeof(killSelf)) as killSelf;
+						killSelfComponent.timeTillDeath = currentGun.TracerEffectTime;
+						// Add it to the list of bullets
+						currentGun.ActiveBullets.Add(newBullet);
+					}
+					// Handle damage dealing
+					if (Physics.Raycast(GunPoint.position, transform.forward, out RaycastHit hit))
+					{
+						if (hit.collider.gameObject.layer.Equals(currentGun.TargetLayer))
+						{
+							Debug.Log("Enemy Hit!");
+						}
+					}
+					// Play fire sound
+					audioManager.Play(currentGun.FireSoundName);
+				}
+				if (currentGun.SingleFire)
+				{
+					continueToFire = false;
+				}
+				currentGun.RecentlyUsed = true;
+			}
+			if (Input.GetButtonUp("Fire1"))
+			{
+				continueToFire = true;
+			}
+		}
+		UpdateWeaponTimes();
+	}
+	private void UpdateWeaponTimes()
+	{
+		List<WeaponBase> allWeapons = new List<WeaponBase>(currentGunInventory);
+		allWeapons.AddAll(currentGrenadeInventory.ToArray());
+		foreach (WeaponBase weapon in allWeapons)
+		{
+			if (weapon.RecentlyUsed)
+			{
+				weapon.TimeSinceUsed += Time.deltaTime * 1000;
+				if (weapon.TimeSinceUsed >= weapon.UsageRate)
+				{
+					weapon.TimeSinceUsed = 0;
+					weapon.RecentlyUsed = false;
+				}
 			}
 		}
 	}

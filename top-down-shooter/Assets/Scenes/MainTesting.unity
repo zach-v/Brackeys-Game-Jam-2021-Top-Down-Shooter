@@ -443,7 +443,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh20992
+  m_Name: pb_Mesh21076
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -662,6 +662,103 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaDirect: 0.5
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
+--- !u!1 &560550358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 560550362}
+  - component: {fileID: 560550361}
+  - component: {fileID: 560550360}
+  - component: {fileID: 560550359}
+  m_Layer: 0
+  m_Name: TestingCam
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &560550359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560550358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 93640e3c74a95e5479f6b79aa23eeecd, type: 2}
+--- !u!81 &560550360
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560550358}
+  m_Enabled: 1
+--- !u!20 &560550361
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560550358}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &560550362
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560550358}
+  m_LocalRotation: {x: 0.09237223, y: 0.93778515, z: -0.3327888, w: -0.035750583}
+  m_LocalPosition: {x: 7.87, y: 3.0465786, z: -8.629999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 38.138, y: 189.405, z: 14.509}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,23 +950,33 @@ MonoBehaviour:
   RotationOffset: {x: -90, y: 90, z: 0}
   ItemInHand: {fileID: 0}
   currentGun:
-    name: 
+    Name: 
     TargetLayer:
       serializedVersion: 2
       m_Bits: 0
+    UsageRate: 100
+    RecentlyUsed: 0
+    TimeSinceUsed: 0
     Damage: 0
-    FireRate: 0
+    ShotCount: 1
+    spread: 1
     SingleFire: 0
+    HitScan: 1
+    FireSoundName: pistol-1
     WeaponModel: {fileID: 0}
+    projectile: {fileID: 0}
     FireEffect: {fileID: 0}
     TracerEffect: {fileID: 0}
+    TracerEffectTime: 1
     Impact: {fileID: 0}
+    ActiveBullets: []
     method: 0
   currentGunInventory: []
   currentBiome: 0
   currentTimeToSound: 0
   numberOfJogSounds: 0
   numberOfRunSounds: 0
+  continueToFire: 1
 --- !u!136 &807187887
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1571,17 +1678,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GunList:
-  - name: Pistol
+  - Name: Pistol
     TargetLayer:
       serializedVersion: 2
       m_Bits: 128
+    UsageRate: 100
+    RecentlyUsed: 0
+    TimeSinceUsed: 0
     Damage: 10
-    FireRate: 0
+    ShotCount: 1
+    spread: 6
     SingleFire: 1
+    HitScan: 1
+    FireSoundName: pistol-1
     WeaponModel: {fileID: 919132149155446097, guid: ca36b3f37bddcbc4986b1687d915693d, type: 3}
-    FireEffect: {fileID: 0}
-    TracerEffect: {fileID: 1769621416249240, guid: ab32929843ea40d48ae16ecaa85f794a, type: 3}
+    projectile: {fileID: 0}
+    FireEffect: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
+    TracerEffect: {fileID: 1130945418854432, guid: a7a6023a6802b1f40870e07f85b5b985, type: 3}
+    TracerEffectTime: 2
     Impact: {fileID: 1384676760634654, guid: 289ba3245c9c98c42aeb93d5f45a2248, type: 3}
+    ActiveBullets: []
     method: 0
 --- !u!1 &1983664223
 GameObject:
@@ -1794,6 +1910,20 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    source: {fileID: 0}
+  - name: pistol-1
+    clip: {fileID: 8300000, guid: 9bdee181a71250346b7d5471acc70f83, type: 3}
+    volume: 0.8
+    pitch: 0.85
+    loop: 0
+    audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    source: {fileID: 0}
+  - name: pistol-2
+    clip: {fileID: 8300000, guid: cd2fd5c55f27f5e4d9dfaef101821977, type: 3}
+    volume: 0.8
+    pitch: 0.85
+    loop: 0
+    audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     source: {fileID: 0}
   normalVolume: {fileID: 24500006, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
   lowPass: {fileID: -7746596214534304524, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
