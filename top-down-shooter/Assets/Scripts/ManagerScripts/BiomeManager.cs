@@ -7,7 +7,7 @@ public class BiomeManager : MonoBehaviour
 {
 	public enum Biome
 	{
-		Planes, Swamp, Forest, Hell
+		Void, Planes, Swamp, Forest, Hell
 	}
 	public float frequency = 1;
 	public float amplitude = 1;

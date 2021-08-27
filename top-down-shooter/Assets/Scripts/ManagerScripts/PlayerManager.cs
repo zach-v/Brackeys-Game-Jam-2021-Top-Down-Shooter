@@ -26,6 +26,7 @@ public class PlayerManager : MonoBehaviour
 
 	[Header("Other Readonlys")]
 	[SerializeField] private Biome currentBiome = Biome.Planes;
+	[ReadOnly] [SerializeField] private Biome previousBiome = Biome.Void;
 	[ReadOnly] [SerializeField] private float currentTimeToSound = 0;
 	[ReadOnly] [SerializeField] private int numberOfJogSounds = 0;
 	[ReadOnly] [SerializeField] private int numberOfRunSounds = 0;
@@ -54,37 +55,12 @@ public class PlayerManager : MonoBehaviour
 			}
 		}
 	}
-	private void SetCurrentGun(int index)
+	void Start()
 	{
-		// Remove previous item
-		Destroy(ItemInHand);
-		// Add new one based on index
-		currentGun = currentGunInventory[index];
-		ItemInHand = Instantiate(currentGun.WeaponModel, GunPoint.position, Quaternion.Euler(GunPoint.rotation.eulerAngles + RotationOffset), transform);
+		StartCoroutine("CheckWeaponBulletList");
+		StartCoroutine("CheckBiome");
 	}
-	private int GetIndexOfType<T>(T weapon) where T : WeaponBase
-	{
-		if (typeof(T).IsEquivalentTo(typeof(Gun)))
-			return currentGunInventory.IndexOf(weapon as Gun);
-		if (typeof(T).IsEquivalentTo(typeof(Grenade)))
-			return currentGrenadeInventory.IndexOf(weapon as Grenade);
-		return -1;
-	}
-	public bool AddWeapon(WeaponBase weapon)
-	{
-		try
-		{
-			if (weapon.GetType().IsEquivalentTo(typeof(Gun)))
-				currentGunInventory.Add(weapon as Gun);
-			if (weapon.GetType().IsEquivalentTo(typeof(Grenade)))
-				currentGrenadeInventory.Add(weapon as Grenade);
-		}
-		catch (System.Exception)
-		{
-			return false;
-		}
-		return true;
-	}
+	#region Update Methods
 	private void Update()
 	{
 		// if not recently used
@@ -162,6 +138,73 @@ public class PlayerManager : MonoBehaviour
 			audioManager.Play("Dirt_Jogging-" + Mathf.RoundToInt(Random.Range(1, numberOfJogSounds)));
 			currentTimeToSound = 0;
 		}
-		currentBiome = biomeManager.GetBiomeAt(transform.position);
 	}
+	#endregion
+	private int GetIndexOfType<T>(T weapon) where T : WeaponBase
+	{
+		if (typeof(T).IsEquivalentTo(typeof(Gun)))
+			return currentGunInventory.IndexOf(weapon as Gun);
+		if (typeof(T).IsEquivalentTo(typeof(Grenade)))
+			return currentGrenadeInventory.IndexOf(weapon as Grenade);
+		return -1;
+	}
+	private void SetCurrentGun(int index)
+	{
+		// Remove previous item
+		Destroy(ItemInHand);
+		// Add new one based on index
+		currentGun = currentGunInventory[index];
+		ItemInHand = Instantiate(currentGun.WeaponModel, GunPoint.position, Quaternion.Euler(GunPoint.rotation.eulerAngles + RotationOffset), transform);
+	}
+	public bool AddWeapon(WeaponBase weapon)
+	{
+		try
+		{
+			if (weapon.GetType().IsEquivalentTo(typeof(Gun)))
+				currentGunInventory.Add(weapon as Gun);
+			if (weapon.GetType().IsEquivalentTo(typeof(Grenade)))
+				currentGrenadeInventory.Add(weapon as Grenade);
+		}
+		catch (System.Exception)
+		{
+			return false;
+		}
+		return true;
+	}
+	#region Coroutines
+	private IEnumerator CheckWeaponBulletList()
+	{
+		for (; ; )
+		{
+			currentGun.ActiveBullets.RemoveAll(bullet => bullet == null);
+			yield return new WaitForSeconds(1);
+		}
+	}
+	private IEnumerator CheckBiome()
+	{
+		for(; ; )
+		{
+			if (previousBiome != currentBiome)
+			{
+				switch (currentBiome)
+				{
+					case Biome.Planes:
+						break;
+					case Biome.Swamp:
+						audioManager.Play("ambient-swamp");
+						break;
+					case Biome.Forest:
+						audioManager.Play("ambient-forest");
+						break;
+					case Biome.Hell:
+						audioManager.Play("ambient-hell");
+						break;
+				}
+				previousBiome = currentBiome;
+			}
+			//currentBiome = biomeManager.GetBiomeAt(transform.position);
+			yield return new WaitForSeconds(1);
+		}
+	}
+	#endregion
 }

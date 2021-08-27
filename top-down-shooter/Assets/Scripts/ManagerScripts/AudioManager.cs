@@ -6,10 +6,11 @@ using System.Collections;
 public class AudioManager : MonoBehaviour
 {
 	public Sound[] sounds;
+	public Sound[] ambientSounds;
 	public AudioMixerSnapshot normalVolume;
 	public AudioMixerSnapshot lowPass;
 	public AudioMixerSnapshot reverb;
-	[ReadOnly] public Sound CurrentMusic = null;
+	[ReadOnly] public Sound CurrentMusic;
 	public FilterState CurrentState = FilterState.Normal;
 	public enum FilterState { Normal, LowPass, Reverb }
 
@@ -25,6 +26,7 @@ public class AudioManager : MonoBehaviour
 			s.source.loop = s.loop;
 			s.source.outputAudioMixerGroup = s.audioMixer;
 		}
+		CurrentMusic = Array.Find(sounds, sound => sound.isMusic);
 	}
 
 	public void Play(string name)
@@ -32,15 +34,12 @@ public class AudioManager : MonoBehaviour
 		try
 		{
 			Sound s = Array.Find(sounds, sound => sound.name == name);
-			s.source.Play();
 			if (s.isMusic)
-				if (CurrentMusic != null)
-				{
-					Stop(CurrentMusic.name);
-					CurrentMusic = s;
-				}
-				else
-					CurrentMusic = s;
+			{
+				Stop(CurrentMusic.name);
+				CurrentMusic = s;
+			}
+			s.source.Play();
 		}
 		catch (Exception e)
 		{
@@ -59,7 +58,10 @@ public class AudioManager : MonoBehaviour
 	public void Stop(string name)
 	{
 		Sound s = Array.Find(sounds, sound => sound.name == name);
-		s.source.Stop();
+		if (!s.isMusic)
+			s.source.Stop();
+		else
+			StartCoroutine("FadeAudio",s);
 	}
 
 	public void ChangeFilterState(FilterState state)
