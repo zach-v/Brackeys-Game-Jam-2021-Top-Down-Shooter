@@ -8,6 +8,7 @@ public class WeaponBase
 	public string Name;
 	public LayerMask TargetLayer;
 	public float UsageRate = 100; // ms
+	public Vector3 RotationOffset;
 	[ReadOnly] public bool RecentlyUsed = false;
 	[ReadOnly] public float TimeSinceUsed = 0;
 }

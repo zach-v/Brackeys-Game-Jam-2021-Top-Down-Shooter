@@ -43,4 +43,16 @@ public class Gun : WeaponBase, IEquatable<Gun>
 	{
 		return Name == other.Name;
 	}
+	public Vector3 Spread(Vector3 aim, float distance, float variance)
+	{
+		aim.Normalize();
+		Vector3 v3;
+		do
+		{
+			v3 = UnityEngine.Random.insideUnitSphere;
+		} while (v3 == aim || v3 == -aim);
+		v3 = Vector3.Cross(aim, v3);
+		v3 = v3 * UnityEngine.Random.Range(0.0f, variance);
+		return aim * distance + v3;
+	}
 }

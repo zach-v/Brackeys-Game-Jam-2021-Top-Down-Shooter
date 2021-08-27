@@ -61,7 +61,7 @@ public class AudioManager : MonoBehaviour
 		if (!s.isMusic)
 			s.source.Stop();
 		else
-			StartCoroutine("FadeAudio",s);
+			StartCoroutine(FadeAudio(s));
 	}
 
 	public void ChangeFilterState(FilterState state)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Assets.Scripts.Components
 {
@@ -43,6 +44,17 @@ namespace Assets.Scripts.Components
 			{
 				Console.WriteLine($"Error with RemoveAll { e.Message }\n{ e.StackTrace }");
 			}
+		}
+		public static int MaskToLayer(this LayerMask mask)
+		{
+			int layerNumber = 0;
+			int layer = mask.value;
+			while (layer > 0)
+			{
+				layer = layer >> 1;
+				layerNumber++;
+			}
+			return layerNumber - 1;
 		}
 	}
 }

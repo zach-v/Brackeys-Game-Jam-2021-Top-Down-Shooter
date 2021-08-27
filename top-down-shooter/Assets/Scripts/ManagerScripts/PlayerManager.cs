@@ -57,8 +57,8 @@ public class PlayerManager : MonoBehaviour
 	}
 	void Start()
 	{
-		StartCoroutine("CheckWeaponBulletList");
-		StartCoroutine("CheckBiome");
+		StartCoroutine(CheckWeaponBulletList());
+		StartCoroutine(CheckBiome());
 	}
 	#region Update Methods
 	private void Update()
@@ -75,22 +75,22 @@ public class PlayerManager : MonoBehaviour
 					for (int i = 0; i < currentGun.ShotCount; i++)
 					{
 						// Create some variation in spread
-						Vector3 bulletSpread = new Vector3(Random.Range(-currentGun.spread, currentGun.spread),
-							Random.Range(-currentGun.spread, currentGun.spread), Random.Range(-currentGun.spread, currentGun.spread));
+						Vector3 betterSpread = currentGun.Spread(GunPoint.forward, 10, currentGun.spread);
 						// Make a new gameobject for the tracers
-						GameObject newBullet = Instantiate(currentGun.TracerEffect, GunPoint.position, Quaternion.Euler(GunPoint.rotation.eulerAngles + bulletSpread));
+						GameObject newBullet = Instantiate(currentGun.TracerEffect, GunPoint.position, Quaternion.LookRotation(betterSpread));
 						// Attach die after time to it and set the time
 						killSelf killSelfComponent = newBullet.AddComponent(typeof(killSelf)) as killSelf;
 						killSelfComponent.timeTillDeath = currentGun.TracerEffectTime;
 						// Add it to the list of bullets
 						currentGun.ActiveBullets.Add(newBullet);
-					}
-					// Handle damage dealing
-					if (Physics.Raycast(GunPoint.position, transform.forward, out RaycastHit hit))
-					{
-						if (hit.collider.gameObject.layer.Equals(currentGun.TargetLayer))
+						// Handle damage dealing
+						Debug.DrawRay(GunPoint.position, betterSpread, Color.green);
+						if (Physics.Raycast(GunPoint.position, betterSpread, out RaycastHit hit))
 						{
-							Debug.Log("Enemy Hit!");
+							if (hit.collider.gameObject.layer.Equals(currentGun.TargetLayer.MaskToLayer()))
+							{
+								hit.collider.gameObject.GetComponent<HealthScript>().CurrentHealth -= currentGun.Damage;
+							}
 						}
 					}
 					// Play fire sound
