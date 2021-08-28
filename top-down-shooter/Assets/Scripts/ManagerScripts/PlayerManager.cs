@@ -8,22 +8,29 @@ using static BiomeManager;
 public class PlayerManager : MonoBehaviour
 {
 	[Header("Manager Fields")]
-	public PlayerMovement movement;
-	public AudioManager audioManager;
-	public ItemManager weaponManager;
-	public BiomeManager biomeManager;
+	[SerializeField] private PlayerMovement movement;
+	[SerializeField] private AudioManager audioManager;
+	[SerializeField] private ItemManager weaponManager;
+	[SerializeField] private BiomeManager biomeManager;
 	[Header("Walking Sound Fields")]
-	public float TimeToStepSoundJog = 0.9f;
-	public float TimeToStepSoundRun = 0.5f;
+	[SerializeField] private float TimeToStepSoundJog = 0.9f;
+	[SerializeField] private float TimeToStepSoundRun = 0.5f;
 	[Header("Item Fields")]
-	public Transform GunPoint;
-	[SerializeField] private Vector3 RotationOffset = new Vector3(-90, 90, 0);
+	[SerializeField] private Transform GunPoint;
+	[SerializeField] private Transform GunPoint2;
+	private Vector3 GunPointOriginalPosition;
+	private Vector3 GunPoint2OriginalPosition;
 	[ReadOnly] [SerializeField] private GameObject ItemInHand;
 	[ReadOnly] [SerializeField] private Gun currentGun = null;
-	[ReadOnly] [SerializeField] private List<Gun> currentGunInventory;
+	[ReadOnly] [SerializeField] private List<Gun> gunInventory;
 	[ReadOnly] [SerializeField] private Grenade currentGrenade;
-	[ReadOnly] [SerializeField] private List<Grenade> currentGrenadeInventory;
-
+	[ReadOnly] [SerializeField] private List<Grenade> grenadeInventory;
+	[ReadOnly] [SerializeField] private List<Item> itemInventory;
+	[Header("UI Interaction")]
+	[SerializeField] private GameObject InventoryCanvas;
+	[SerializeField] private FlexibleGridLayout GunTableGrid;
+	[SerializeField] private FlexibleGridLayout GrenadeTableGrid;
+	[SerializeField] private FlexibleGridLayout ItemsTableGrid;
 	[Header("Other Readonlys")]
 	[SerializeField] private Biome currentBiome = Biome.Planes;
 	[ReadOnly] [SerializeField] private Biome previousBiome = Biome.Void;
@@ -34,16 +41,18 @@ public class PlayerManager : MonoBehaviour
 
 	public PlayerManager()
 	{
-		currentGunInventory = new List<Gun>();
-		currentGrenadeInventory = new List<Grenade>();
+		gunInventory = new List<Gun>();
+		grenadeInventory = new List<Grenade>();
 	}
 	void Awake()
 	{
+		GunPointOriginalPosition = GunPoint.position;
+		GunPoint2OriginalPosition = GunPoint2.position;
 		// Set current gun to first one in list
-		AddWeapon(weaponManager.GunList[0]);
+		AddWeaponToInventory(weaponManager.GunList[0]);
 		SetCurrentGun(0);
 		// Populate random sound list
-		foreach (Sound s in audioManager.sounds)
+		foreach (Sound s in audioManager.itemSounds)
 		{
 			if (s.name.Contains("Dirt_Jogging-"))
 			{
@@ -62,6 +71,58 @@ public class PlayerManager : MonoBehaviour
 	}
 	#region Update Methods
 	private void Update()
+	{
+		// If we are not in the inventory screen
+		if (!InventoryCanvas.gameObject.activeSelf)
+		{
+			CheckShooting();
+		}
+		// Change weapon
+		if (Input.GetButton("Fire3"))
+		{
+			InventoryCanvas.gameObject.SetActive(true);
+			movement.AllowedToTurn = false;
+			audioManager.ChangeFilterState(AudioManager.FilterState.LowPass);
+		}
+		if (Input.GetButtonUp("Fire3"))
+		{
+			InventoryCanvas.gameObject.SetActive(false);
+			movement.AllowedToTurn = true;
+			audioManager.ChangeFilterState(AudioManager.FilterState.Normal);
+		}
+		UpdateWeaponTimes();
+	}
+	private void UpdateWeaponTimes()
+	{
+		List<WeaponBase> allWeapons = new List<WeaponBase>(gunInventory);
+		allWeapons.AddRange(grenadeInventory.ToArray());
+		foreach (WeaponBase weapon in allWeapons)
+		{
+			if (weapon.RecentlyUsed)
+			{
+				weapon.TimeSinceUsed += Time.deltaTime * 1000;
+				if (weapon.TimeSinceUsed >= weapon.UsageRate)
+				{
+					weapon.TimeSinceUsed = 0;
+					weapon.RecentlyUsed = false;
+				}
+			}
+		}
+	}
+	private void FixedUpdate()
+	{
+		if (movement.movement.magnitude >= 0.1)
+			currentTimeToSound += Time.fixedDeltaTime;
+	}
+	private void LateUpdate()
+	{
+		if (currentTimeToSound >= TimeToStepSoundJog)
+		{
+			audioManager.Play("Dirt_Jogging-" + Mathf.RoundToInt(Random.Range(1, numberOfJogSounds)), Sound.SoundType.Walking);
+			currentTimeToSound = 0;
+		}
+	}
+	private void CheckShooting()
 	{
 		// if not recently used
 		if (!currentGun.RecentlyUsed)
@@ -96,6 +157,10 @@ public class PlayerManager : MonoBehaviour
 					// Play fire sound
 					audioManager.Play(currentGun.FireSoundName);
 				}
+				else // Not hitscan
+				{
+					// TODO Create projectile system for shooting projectile based weapons
+				}
 				if (currentGun.SingleFire)
 				{
 					continueToFire = false;
@@ -107,45 +172,14 @@ public class PlayerManager : MonoBehaviour
 				continueToFire = true;
 			}
 		}
-		UpdateWeaponTimes();
-	}
-	private void UpdateWeaponTimes()
-	{
-		List<WeaponBase> allWeapons = new List<WeaponBase>(currentGunInventory);
-		allWeapons.AddAll(currentGrenadeInventory.ToArray());
-		foreach (WeaponBase weapon in allWeapons)
-		{
-			if (weapon.RecentlyUsed)
-			{
-				weapon.TimeSinceUsed += Time.deltaTime * 1000;
-				if (weapon.TimeSinceUsed >= weapon.UsageRate)
-				{
-					weapon.TimeSinceUsed = 0;
-					weapon.RecentlyUsed = false;
-				}
-			}
-		}
-	}
-	private void FixedUpdate()
-	{
-		if (movement.movement.magnitude >= 0.1)
-			currentTimeToSound += Time.fixedDeltaTime;
-	}
-	private void LateUpdate()
-	{
-		if (currentTimeToSound >= TimeToStepSoundJog)
-		{
-			audioManager.Play("Dirt_Jogging-" + Mathf.RoundToInt(Random.Range(1, numberOfJogSounds)));
-			currentTimeToSound = 0;
-		}
 	}
 	#endregion
 	private int GetIndexOfType<T>(T weapon) where T : WeaponBase
 	{
 		if (typeof(T).IsEquivalentTo(typeof(Gun)))
-			return currentGunInventory.IndexOf(weapon as Gun);
+			return gunInventory.IndexOf(weapon as Gun);
 		if (typeof(T).IsEquivalentTo(typeof(Grenade)))
-			return currentGrenadeInventory.IndexOf(weapon as Grenade);
+			return grenadeInventory.IndexOf(weapon as Grenade);
 		return -1;
 	}
 	private void SetCurrentGun(int index)
@@ -153,17 +187,26 @@ public class PlayerManager : MonoBehaviour
 		// Remove previous item
 		Destroy(ItemInHand);
 		// Add new one based on index
-		currentGun = currentGunInventory[index];
-		ItemInHand = Instantiate(currentGun.WeaponModel, GunPoint.position, Quaternion.Euler(GunPoint.rotation.eulerAngles + RotationOffset), transform);
+		currentGun = gunInventory[index];
+		ItemInHand = Instantiate(currentGun.WeaponModel, GunPoint.position, Quaternion.Euler(GunPoint.rotation.eulerAngles + currentGun.RotationOffset), transform);
+
+		if (currentGun.SingleHanded)
+		{
+			GunPoint2.position = new Vector3(GunPoint.position.x, GunPoint.position.y - 0.1f, GunPoint.position.z);
+		}
+		else
+		{
+			GunPoint2.position = GunPoint2OriginalPosition;
+		}
 	}
-	public bool AddWeapon(WeaponBase weapon)
+	public bool AddWeaponToInventory(WeaponBase weapon)
 	{
 		try
 		{
 			if (weapon.GetType().IsEquivalentTo(typeof(Gun)))
-				currentGunInventory.Add(weapon as Gun);
+				gunInventory.Add(weapon as Gun);
 			if (weapon.GetType().IsEquivalentTo(typeof(Grenade)))
-				currentGrenadeInventory.Add(weapon as Grenade);
+				grenadeInventory.Add(weapon as Grenade);
 		}
 		catch (System.Exception)
 		{

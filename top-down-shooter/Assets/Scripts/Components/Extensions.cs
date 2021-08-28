@@ -9,42 +9,6 @@ namespace Assets.Scripts.Components
 {
 	public static class Extensions
 	{
-		/// <summary>
-		/// Adds all items given a collection.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="collection"></param>
-		/// <param name="items"></param>
-		public static void AddAll<T>(this IList<T> collection, params T[] items)
-		{
-			try
-			{
-				foreach (T item in items)
-					collection.Add(item);
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine($"Error with AddAll { e.Message }\n{ e.StackTrace }");
-			}
-		}
-		/// <summary>
-		/// Removes all items given a collection.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="collection"></param>
-		/// <param name="items"></param>
-		public static void RemoveAll<T>(this IList<T> collection, params T[] items)
-		{
-			try
-			{
-				foreach (T item in items)
-					collection.Remove(item);
-			}
-			catch (Exception e)
-			{
-				Console.WriteLine($"Error with RemoveAll { e.Message }\n{ e.StackTrace }");
-			}
-		}
 		public static int MaskToLayer(this LayerMask mask)
 		{
 			int layerNumber = 0;
@@ -55,6 +19,24 @@ namespace Assets.Scripts.Components
 				layerNumber++;
 			}
 			return layerNumber - 1;
+		}
+		public static float ConvertToAngle180(float input)
+		{
+			while (input > 360)
+			{
+				input = input - 360;
+			}
+			while (input < -360)
+			{
+				input = input + 360;
+			}
+			if (input > 180)
+			{
+				input = input - 360;
+			}
+			if (input < -180)
+				input = 360 + input;
+			return input;
 		}
 	}
 }

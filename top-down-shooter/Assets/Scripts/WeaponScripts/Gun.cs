@@ -1,10 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Gun : WeaponBase, IEquatable<Gun>
+public class Gun : WeaponBase
 {
 	public enum SpecialMethod
 	{
@@ -22,7 +21,12 @@ public class Gun : WeaponBase, IEquatable<Gun>
 	public Projectile projectile;
 	public GameObject FireEffect;
 	public GameObject TracerEffect;
+	public bool UseCustomHandPositions = false;
+	public GameObject RightHand;
+	public GameObject LeftHand;
+
 	public float TracerEffectTime = 3;
+	public bool SingleHanded = true;
 	public GameObject Impact;
 	[ReadOnly] public List<GameObject> ActiveBullets;
 	[Header("Other")]
@@ -38,10 +42,6 @@ public class Gun : WeaponBase, IEquatable<Gun>
 			default:
 				break;
 		}
-	}
-	public bool Equals(Gun other)
-	{
-		return Name == other.Name;
 	}
 	public Vector3 Spread(Vector3 aim, float distance, float variance)
 	{

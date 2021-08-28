@@ -2,21 +2,32 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using static Sound;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
-	public Sound[] sounds;
-	public Sound[] ambientSounds;
+	public Sound[] itemSounds;
+	public Sound[] natureSounds;
+	public Sound[] music;
+	public Sound[] walkingSounds;
+	public Sound[] mobSounds;
 	public AudioMixerSnapshot normalVolume;
 	public AudioMixerSnapshot lowPass;
 	public AudioMixerSnapshot reverb;
 	[ReadOnly] public Sound CurrentMusic;
 	public FilterState CurrentState = FilterState.Normal;
 	public enum FilterState { Normal, LowPass, Reverb }
-
 	void Awake()
 	{
-		foreach (Sound s in sounds)
+		// Add all arrays to a single list
+		List<Sound> all = new List<Sound>(itemSounds);
+		all.AddRange(natureSounds);
+		all.AddRange(music);
+		all.AddRange(walkingSounds);
+		all.AddRange(mobSounds);
+		// Iterate through list to assign components
+		foreach (Sound s in all)
 		{
 			s.source = gameObject.AddComponent<AudioSource>();
 
@@ -26,15 +37,20 @@ public class AudioManager : MonoBehaviour
 			s.source.loop = s.loop;
 			s.source.outputAudioMixerGroup = s.audioMixer;
 		}
-		CurrentMusic = Array.Find(sounds, sound => sound.isMusic);
+		// Set current music
+		CurrentMusic = Array.Find(music, sound => sound.Type == SoundType.Music);
 	}
-
-	public void Play(string name)
+	/// <summary>
+	/// Plays a sound by name. Faster processing wise to give it a type too.
+	/// </summary>
+	/// <param name="name"></param>
+	/// <param name="type"></param>
+	public void Play(string name, SoundType type = SoundType.Default)
 	{
 		try
 		{
-			Sound s = Array.Find(sounds, sound => sound.name == name);
-			if (s.isMusic)
+			Sound s = Find(name, type);
+			if (type == SoundType.Music)
 			{
 				Stop(CurrentMusic.name);
 				CurrentMusic = s;
@@ -55,28 +71,77 @@ public class AudioManager : MonoBehaviour
 		}
 		sound.source.Stop();
 	}
-	public void Stop(string name)
+	public void Stop(string name, SoundType type = SoundType.Default)
 	{
-		Sound s = Array.Find(sounds, sound => sound.name == name);
-		if (!s.isMusic)
-			s.source.Stop();
-		else
-			StartCoroutine(FadeAudio(s));
+		try
+		{
+			Sound s = Find(name, type);
+			if (type == SoundType.Music)
+				StartCoroutine(FadeAudio(s));
+			else
+				s.source.Stop();
+		}
+		catch (Exception e)
+		{
+			Debug.Log($"Unable to stop sound: {name}, because {e.Message}");
+		}
 	}
-
+	/// <summary>
+	/// Internal finder method based on type. If default type given, it will make a list of all sounds.
+	/// </summary>
+	/// <param name="name"></param>
+	/// <param name="type"></param>
+	/// <returns></returns>
+	private Sound Find(string name, SoundType type = SoundType.Default)
+	{
+		try
+		{
+			Sound s = null;
+			switch (type)
+			{
+				case SoundType.Mob:
+					s = Array.Find(mobSounds, sound => sound.name == name);
+					break;
+				case SoundType.Item:
+					s = Array.Find(itemSounds, sound => sound.name == name);
+					break;
+				case SoundType.Walking:
+					s = Array.Find(walkingSounds, sound => sound.name == name);
+					break;
+				case SoundType.Music:
+					s = Array.Find(music, sound => sound.name == name);
+					break;
+				case SoundType.Ambient:
+					s = Array.Find(natureSounds, sound => sound.name == name);
+					break;
+				default:
+					List<Sound> all = new List<Sound>(itemSounds);
+					all.AddRange(natureSounds);
+					all.AddRange(music);
+					s = Array.Find(all.ToArray(), sound => sound.name == name);
+					break;
+			}
+			return s;
+		}
+		catch (Exception e)
+		{
+			Debug.Log($"Unable to find sound: {name}, because {e.Message}");
+		}
+		return null;
+	}
 	public void ChangeFilterState(FilterState state)
 	{
 		CurrentState = state;
 		switch (state)
 		{
 			case FilterState.Normal:
-				normalVolume.TransitionTo(5);
+				normalVolume.TransitionTo(1);
 				break;
 			case FilterState.LowPass:
-				lowPass.TransitionTo(2);
+				lowPass.TransitionTo(0.1f);
 				break;
 			case FilterState.Reverb:
-				reverb.TransitionTo(2);
+				reverb.TransitionTo(1);
 				break;
 		}
 	}
