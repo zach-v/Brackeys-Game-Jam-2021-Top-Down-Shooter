@@ -9,6 +9,7 @@ public class WeaponBase : IEquatable<WeaponBase>
 	public string Name;
 	public LayerMask TargetLayer;
 	public float UsageRate = 100; // ms
+	public Vector3 PositionOffset;
 	public Vector3 RotationOffset;
 	[Range(0.01f,1.5f)]
 	public float DropPercentage = 1;

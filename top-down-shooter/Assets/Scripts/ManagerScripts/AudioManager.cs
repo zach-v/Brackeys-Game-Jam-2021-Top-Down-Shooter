@@ -38,7 +38,7 @@ public class AudioManager : MonoBehaviour
 			s.source.outputAudioMixerGroup = s.audioMixer;
 		}
 		// Set current music
-		CurrentMusic = Array.Find(music, sound => sound.Type == SoundType.Music);
+		CurrentMusic = Array.Find(music, sound => sound.type == SoundType.Music);
 	}
 	/// <summary>
 	/// Plays a sound by name. Faster processing wise to give it a type too.
@@ -50,7 +50,7 @@ public class AudioManager : MonoBehaviour
 		try
 		{
 			Sound s = Find(name, type);
-			if (type == SoundType.Music)
+			if (s.type == SoundType.Music)
 			{
 				Stop(CurrentMusic.name);
 				CurrentMusic = s;
@@ -70,6 +70,27 @@ public class AudioManager : MonoBehaviour
 			yield return new WaitForSeconds(0.1f);
 		}
 		sound.source.Stop();
+	}
+	/// <summary>
+	/// Play a sound by name and type at a certain point.
+	/// </summary>
+	/// <param name="name"></param>
+	/// <param name="point"></param>
+	/// <param name="type"></param>
+	public void PlayAtPoint(string name, Vector3 point, SoundType type = SoundType.Default)
+	{
+		try
+		{
+			Sound s = Find(name, type);
+			if (s.type != SoundType.Music)
+			{
+				AudioSource.PlayClipAtPoint(s.clip, point);
+			}
+		}
+		catch (Exception e)
+		{
+			Debug.Log($"Unable to play sound: {name}, at point {point}, because {e.Message}");
+		}
 	}
 	public void Stop(string name, SoundType type = SoundType.Default)
 	{

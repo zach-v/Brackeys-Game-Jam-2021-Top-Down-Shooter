@@ -465,7 +465,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &70305653
 GameObject:
@@ -552,7 +552,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21022
+  m_Name: pb_Mesh21056
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1563,7 +1563,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 30, y: 160, z: 0}
 --- !u!1 &723590490
 GameObject:
@@ -1746,7 +1746,7 @@ Transform:
   - {fileID: 617728214}
   - {fileID: 1893214634}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &807187885
 MonoBehaviour:
@@ -1775,6 +1775,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 0
     UsageRate: 100
+    PositionOffset: {x: 0, y: 0, z: 0}
     RotationOffset: {x: 0, y: 0, z: 0}
     DropPercentage: 1
     RecentlyUsed: 0
@@ -1804,6 +1805,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 0
     UsageRate: 100
+    PositionOffset: {x: 0, y: 0, z: 0}
     RotationOffset: {x: 0, y: 0, z: 0}
     DropPercentage: 1
     RecentlyUsed: 0
@@ -2929,7 +2931,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
@@ -3216,7 +3218,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1268258716
 GameObject:
@@ -3507,6 +3509,7 @@ GameObject:
   - component: {fileID: 1439031206}
   - component: {fileID: 1439031205}
   - component: {fileID: 1439031209}
+  - component: {fileID: 1439031210}
   m_Layer: 6
   m_Name: Plane
   m_TagString: Environment
@@ -3590,7 +3593,7 @@ Transform:
   m_LocalScale: {x: 100, y: 1, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1439031209
 Rigidbody:
@@ -3608,6 +3611,61 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
+--- !u!114 &1439031210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439031204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c55b343f042fd490783479f4377a291d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolution: 10
+  offset: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0, z: 0}
+  strength: 1
+  damping: 0
+  frequency: 3.6
+  octaves: 3
+  lacunarity: 2.42
+  persistence: 0.632
+  dimensions: 3
+  type: 1
+  coloring:
+    serializedVersion: 2
+    key0: {r: 0.06488074, g: 0.509434, b: 0.09607745, a: 1}
+    key1: {r: 0.23495908, g: 0.9056604, b: 0.2840608, a: 1}
+    key2: {r: 0.745283, g: 0.37251648, b: 0.17225882, a: 0}
+    key3: {r: 0.754717, g: 0.68340236, b: 0.3951584, a: 0}
+    key4: {r: 0.21226418, g: 0.57093894, b: 1, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 21395
+    ctime2: 33924
+    ctime3: 48380
+    ctime4: 65535
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 2
+  coloringForStrength: 1
+  analyticalDerivatives: 0
+  showNormals: 0
 --- !u!1 &1466646745
 GameObject:
   m_ObjectHideFlags: 0
@@ -3876,7 +3934,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1697789940
 MonoBehaviour:
@@ -3896,6 +3954,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 128
     UsageRate: 1200
+    PositionOffset: {x: 0, y: 0, z: 0}
     RotationOffset: {x: -90, y: -90, z: 0}
     DropPercentage: 0.7
     RecentlyUsed: 0
@@ -3923,6 +3982,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 128
     UsageRate: 150
+    PositionOffset: {x: 0, y: 0, z: 0}
     RotationOffset: {x: -90, y: 90, z: 0}
     DropPercentage: 1
     RecentlyUsed: 0
@@ -3950,6 +4010,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 128
     UsageRate: 1200
+    PositionOffset: {x: 0, y: 0, z: 0}
     RotationOffset: {x: -90, y: 90, z: 0}
     DropPercentage: 0.1
     RecentlyUsed: 0
@@ -3969,6 +4030,62 @@ MonoBehaviour:
     LeftHand: {fileID: 0}
     TracerEffectTime: 2
     SingleHanded: 1
+    Impact: {fileID: 1384676760634654, guid: 289ba3245c9c98c42aeb93d5f45a2248, type: 3}
+    ActiveBullets: []
+    method: 0
+  - Name: AK-47
+    TargetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    UsageRate: 120
+    PositionOffset: {x: 0, y: 0.05, z: 0.22}
+    RotationOffset: {x: -90, y: 90, z: 0}
+    DropPercentage: 0.1
+    RecentlyUsed: 0
+    TimeSinceUsed: 0
+    Damage: 3
+    ShotCount: 1
+    spread: 1
+    SingleFire: 0
+    HitScan: 1
+    FireSoundName: ak-1
+    WeaponModel: {fileID: 919132149155446097, guid: e5b9af22294241c4ab22d8917d1aced1, type: 3}
+    projectile: {fileID: 0}
+    FireEffect: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
+    TracerEffect: {fileID: 1130945418854432, guid: a7a6023a6802b1f40870e07f85b5b985, type: 3}
+    UseCustomHandPositions: 0
+    RightHand: {fileID: 0}
+    LeftHand: {fileID: 0}
+    TracerEffectTime: 2
+    SingleHanded: 0
+    Impact: {fileID: 1384676760634654, guid: 289ba3245c9c98c42aeb93d5f45a2248, type: 3}
+    ActiveBullets: []
+    method: 0
+  - Name: AK-47-Gold
+    TargetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    UsageRate: 90
+    PositionOffset: {x: 0, y: 0.05, z: 0.22}
+    RotationOffset: {x: -90, y: 90, z: 0}
+    DropPercentage: 0.1
+    RecentlyUsed: 0
+    TimeSinceUsed: 0
+    Damage: 5
+    ShotCount: 1
+    spread: 1
+    SingleFire: 0
+    HitScan: 1
+    FireSoundName: ak-1
+    WeaponModel: {fileID: 919132149155446097, guid: 649d93a9a77b378428d053aff9c4dbb1, type: 3}
+    projectile: {fileID: 0}
+    FireEffect: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
+    TracerEffect: {fileID: 1130945418854432, guid: a7a6023a6802b1f40870e07f85b5b985, type: 3}
+    UseCustomHandPositions: 0
+    RightHand: {fileID: 0}
+    LeftHand: {fileID: 0}
+    TracerEffectTime: 2
+    SingleHanded: 0
     Impact: {fileID: 1384676760634654, guid: 289ba3245c9c98c42aeb93d5f45a2248, type: 3}
     ActiveBullets: []
     method: 0
@@ -4267,7 +4384,7 @@ MonoBehaviour:
     pitch: 0.7
     loop: 0
     audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 5
+    type: 5
     source: {fileID: 0}
   - name: pistol-2
     clip: {fileID: 8300000, guid: cd2fd5c55f27f5e4d9dfaef101821977, type: 3}
@@ -4275,7 +4392,7 @@ MonoBehaviour:
     pitch: 0.85
     loop: 0
     audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 5
+    type: 5
     source: {fileID: 0}
   - name: shotgun-1
     clip: {fileID: 8300000, guid: 2e8bd9bb009158148a2b73ef65a71e4c, type: 3}
@@ -4283,7 +4400,7 @@ MonoBehaviour:
     pitch: 0.85
     loop: 0
     audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 5
+    type: 5
     source: {fileID: 0}
   - name: laser-1
     clip: {fileID: 8300000, guid: 95eb9f106585d0744ba2c3ed006c5e6c, type: 3}
@@ -4291,7 +4408,23 @@ MonoBehaviour:
     pitch: 1.2
     loop: 0
     audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 5
+    type: 5
+    source: {fileID: 0}
+  - name: ak-1
+    clip: {fileID: 8300000, guid: 1aa760928403eed4eb9ecd4b04c46078, type: 3}
+    volume: 0.7
+    pitch: 0.8
+    loop: 0
+    audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 5
+    source: {fileID: 0}
+  - name: ak-2
+    clip: {fileID: 8300000, guid: 05380a5fc46e44343b7879c895f502bc, type: 3}
+    volume: 0.7
+    pitch: 0.8
+    loop: 0
+    audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 5
     source: {fileID: 0}
   natureSounds: []
   music:
@@ -4301,7 +4434,7 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     audioMixer: {fileID: -2554213761833168293, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 4
+    type: 0
     source: {fileID: 0}
   - name: ambient-forest
     clip: {fileID: 8300000, guid: 5b309f2f3f82bed4db2cb3840589ab52, type: 3}
@@ -4309,7 +4442,7 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     audioMixer: {fileID: -2554213761833168293, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 4
+    type: 0
     source: {fileID: 0}
   - name: ambient-hell
     clip: {fileID: 8300000, guid: fa500d6a9158ae0478c77a46af742ad4, type: 3}
@@ -4317,7 +4450,7 @@ MonoBehaviour:
     pitch: 1
     loop: 1
     audioMixer: {fileID: -2554213761833168293, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 4
+    type: 0
     source: {fileID: 0}
   walkingSounds:
   - name: Dirt_Jogging-1
@@ -4326,7 +4459,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Dirt_Jogging-2
     clip: {fileID: 8300000, guid: 194da6df2f686c54b97f682f2d8d2460, type: 3}
@@ -4334,7 +4467,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Dirt_Jogging-3
     clip: {fileID: 8300000, guid: 4e654e4ec0a578b47b90dec0c1f3b8a1, type: 3}
@@ -4342,7 +4475,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Dirt_Jogging-4
     clip: {fileID: 8300000, guid: f5b9e4f5afa3336479631e9b3477a862, type: 3}
@@ -4350,7 +4483,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Dirt_Jogging-5
     clip: {fileID: 8300000, guid: a2d9b360fef6027478a70cc21b552cb2, type: 3}
@@ -4358,7 +4491,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Dirt_Running-1
     clip: {fileID: 8300000, guid: 19021cb2484bde6438175ed5c915dcc7, type: 3}
@@ -4366,7 +4499,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Dirt_Running-2
     clip: {fileID: 8300000, guid: 5961eba2e48a74340b677f7b687f5859, type: 3}
@@ -4374,7 +4507,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Dirt_Running-3
     clip: {fileID: 8300000, guid: fdcf79b5da717fd4f92b11b4713c0663, type: 3}
@@ -4382,7 +4515,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Dirt_Running-4
     clip: {fileID: 8300000, guid: 5e8e3a99d227c274b87eff3d8de91582, type: 3}
@@ -4390,7 +4523,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Dirt_Running-5
     clip: {fileID: 8300000, guid: 9367935eb9b01914f892cb99e07dcefe, type: 3}
@@ -4398,7 +4531,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Puddle_Running-1
     clip: {fileID: 8300000, guid: f0d2a365a1e80ec419ce057e745250fd, type: 3}
@@ -4406,7 +4539,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Puddle_Running-2
     clip: {fileID: 8300000, guid: 6ad4d2d1b9330f9478010e14cee60cff, type: 3}
@@ -4414,7 +4547,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Puddle_Running-3
     clip: {fileID: 8300000, guid: d22f77221d4445e45a256723a4b50d0d, type: 3}
@@ -4422,7 +4555,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Puddle_Running-4
     clip: {fileID: 8300000, guid: 32b0717b03764d347b11f1e32a034175, type: 3}
@@ -4430,7 +4563,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Puddle_Running-5
     clip: {fileID: 8300000, guid: 2b3add8f56ffe1749b3393bc01c5980a, type: 3}
@@ -4438,7 +4571,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Puddle_Walking-1
     clip: {fileID: 8300000, guid: e212d718e156cdc41a9242cdf5406c36, type: 3}
@@ -4446,7 +4579,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Puddle_Walking-2
     clip: {fileID: 8300000, guid: 5c0451d17101d564b9e637320f1b0933, type: 3}
@@ -4454,7 +4587,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Puddle_Walking-3
     clip: {fileID: 8300000, guid: cf93bd469f27cde44a32a04972ad2b4f, type: 3}
@@ -4462,7 +4595,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Puddle_Walking-4
     clip: {fileID: 8300000, guid: 3902a39d6ad05a546a772fcb870abea9, type: 3}
@@ -4470,7 +4603,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Puddle_Walking-5
     clip: {fileID: 8300000, guid: 7110abd9a91e4274bb79850be66cbabd, type: 3}
@@ -4478,7 +4611,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Sand_Boots_Running-1
     clip: {fileID: 8300000, guid: a044d1ecc51737240bf8f9395459ea71, type: 3}
@@ -4486,7 +4619,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Sand_Boots_Running-2
     clip: {fileID: 8300000, guid: 24611ea65c7cfb54f8000f6f8d411b77, type: 3}
@@ -4494,7 +4627,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Sand_Boots_Running-3
     clip: {fileID: 8300000, guid: c3665932da2f0874c977fc5ff71892e3, type: 3}
@@ -4502,7 +4635,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Sand_Boots_Running-4
     clip: {fileID: 8300000, guid: 0ec20ddf5c2d1084ba4181597e1e310e, type: 3}
@@ -4510,7 +4643,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Sand_Boots_Running-5
     clip: {fileID: 8300000, guid: 493b9f48acb24a344b991d6e89ade94a, type: 3}
@@ -4518,7 +4651,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   - name: Sand_Boots_Running-6
     clip: {fileID: 8300000, guid: 57ffc43fcf3c3584a9d85a96ceb1afa2, type: 3}
@@ -4526,7 +4659,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    Type: 2
+    type: 0
     source: {fileID: 0}
   mobSounds: []
   normalVolume: {fileID: 24500006, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
@@ -4539,7 +4672,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     audioMixer: {fileID: 0}
-    Type: 0
+    type: 0
     source: {fileID: 0}
   CurrentState: 0
 --- !u!4 &1983664225
@@ -4554,5 +4687,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

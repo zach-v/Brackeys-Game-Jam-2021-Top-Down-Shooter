@@ -188,7 +188,8 @@ public class PlayerManager : MonoBehaviour
 		Destroy(ItemInHand);
 		// Add new one based on index
 		currentGun = gunInventory[index];
-		ItemInHand = Instantiate(currentGun.WeaponModel, GunPoint.position, Quaternion.Euler(GunPoint.rotation.eulerAngles + currentGun.RotationOffset), transform);
+		ItemInHand = Instantiate(currentGun.WeaponModel, GunPoint.position + currentGun.PositionOffset,
+			Quaternion.Euler(GunPoint.rotation.eulerAngles + currentGun.RotationOffset), transform);
 
 		if (currentGun.SingleHanded)
 		{
