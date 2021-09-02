@@ -1108,36 +1108,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 397721345}
   m_CullTransparentMesh: 1
---- !u!1 &412493354
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 412493355}
-  m_Layer: 0
-  m_Name: ItemDrop
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &412493355
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 412493354}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: 0, z: -8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &535102400
 GameObject:
   m_ObjectHideFlags: 0
@@ -1772,7 +1742,7 @@ MonoBehaviour:
   biomeManager: {fileID: 1264085158}
   GunPoint: {fileID: 1276865147}
   GunPoint2: {fileID: 1323398661}
-  ItemInHand: {fileID: 0}
+  itemInHand: {fileID: 0}
   currentGun:
     Name: 
     TargetLayer:
@@ -1799,8 +1769,9 @@ MonoBehaviour:
     TracerEffectTime: 1
     ImpactEffect: {fileID: 0}
     ImpactEffectTime: 3
+    lastHit: {fileID: 0}
     UseCustomHandPositions: 0
-    muzzle: {fileID: 0}
+    muzzle: {x: 0, y: 0, z: 0}
     RightHand: {fileID: 0}
     LeftHand: {fileID: 0}
     SingleHanded: 1
@@ -3954,100 +3925,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GunList:
-  - Name: AK-47
+  - Name: LaserRifle
     TargetLayer:
       serializedVersion: 2
       m_Bits: 128
-    UsageRate: 120
+    UsageRate: 400
     PositionOffset: {x: 0, y: 0.05, z: 0.22}
     RotationOffset: {x: -90, y: 90, z: 0}
     DropPercentage: 0.1
     RecentlyUsed: 0
     TimeSinceUsed: 0
-    Damage: 3
+    Damage: 50
     ShotCount: 1
     spread: 1
     Range: 50
     SingleFire: 0
     HitScan: 1
-    FireSoundName: ak-1
-    WeaponModel: {fileID: 919132149155446097, guid: e5b9af22294241c4ab22d8917d1aced1, type: 3}
-    projectile: {fileID: 0}
-    FireEffect: {fileID: 1769621416249240, guid: 576051583fc1f8e419d415424746b5af, type: 3}
-    FireEffectTime: 3
-    TracerEffect: {fileID: 0}
-    TracerEffectTime: 2
-    ImpactEffect: {fileID: 1384676760634654, guid: cbc9b7b84ce78b8469e2097e576ad5ed, type: 3}
-    ImpactEffectTime: 3
-    UseCustomHandPositions: 0
-    muzzle: {fileID: -6525159927170918547, guid: e5b9af22294241c4ab22d8917d1aced1, type: 3}
-    RightHand: {fileID: 0}
-    LeftHand: {fileID: 0}
-    SingleHanded: 0
-    ActiveEffects: []
-    method: 0
-  - Name: Shotgun
-    TargetLayer:
-      serializedVersion: 2
-      m_Bits: 128
-    UsageRate: 1200
-    PositionOffset: {x: 0, y: 0, z: 0}
-    RotationOffset: {x: -90, y: -90, z: 0}
-    DropPercentage: 0.7
-    RecentlyUsed: 0
-    TimeSinceUsed: 0
-    Damage: 5
-    ShotCount: 5
-    spread: 5
-    Range: 50
-    SingleFire: 1
-    HitScan: 1
-    FireSoundName: shotgun-1
-    WeaponModel: {fileID: 919132149155446097, guid: 4b877973400fa08419fa3e52bb524bed, type: 3}
+    FireSoundName: laser-2
+    WeaponModel: {fileID: 919132149155446097, guid: 3f06bcc6d3e4b754aa61bedb69d66ff1, type: 3}
     projectile: {fileID: 0}
     FireEffect: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
-    FireEffectTime: 3
-    TracerEffect: {fileID: 0}
+    FireEffectTime: 2
+    TracerEffect: {fileID: 1062685050423962, guid: 3536bfd57b96d984896616db8a104ad4, type: 3}
     TracerEffectTime: 2
     ImpactEffect: {fileID: 1384676760634654, guid: cbc9b7b84ce78b8469e2097e576ad5ed, type: 3}
-    ImpactEffectTime: 3
+    ImpactEffectTime: 2
+    lastHit: {fileID: 0}
     UseCustomHandPositions: 1
-    muzzle: {fileID: 0}
-    RightHand: {fileID: -7040017115585985965, guid: 4b877973400fa08419fa3e52bb524bed, type: 3}
-    LeftHand: {fileID: -1982681163204666382, guid: 4b877973400fa08419fa3e52bb524bed, type: 3}
+    muzzle: {x: 0, y: 0.05, z: 0.7}
+    RightHand: {fileID: 108924278338995610, guid: 3f06bcc6d3e4b754aa61bedb69d66ff1, type: 3}
+    LeftHand: {fileID: 107932927474431466, guid: 3f06bcc6d3e4b754aa61bedb69d66ff1, type: 3}
     SingleHanded: 0
-    ActiveEffects: []
-    method: 0
-  - Name: Pistol
-    TargetLayer:
-      serializedVersion: 2
-      m_Bits: 128
-    UsageRate: 150
-    PositionOffset: {x: 0, y: 0, z: 0}
-    RotationOffset: {x: -90, y: 90, z: 0}
-    DropPercentage: 1
-    RecentlyUsed: 0
-    TimeSinceUsed: 0
-    Damage: 5
-    ShotCount: 1
-    spread: 3
-    Range: 50
-    SingleFire: 1
-    HitScan: 1
-    FireSoundName: pistol-1
-    WeaponModel: {fileID: 919132149155446097, guid: ca36b3f37bddcbc4986b1687d915693d, type: 3}
-    projectile: {fileID: 0}
-    FireEffect: {fileID: 1769621416249240, guid: 576051583fc1f8e419d415424746b5af, type: 3}
-    FireEffectTime: 3
-    TracerEffect: {fileID: 0}
-    TracerEffectTime: 2
-    ImpactEffect: {fileID: 1384676760634654, guid: cbc9b7b84ce78b8469e2097e576ad5ed, type: 3}
-    ImpactEffectTime: 3
-    UseCustomHandPositions: 0
-    muzzle: {fileID: -1998635350809678181, guid: ca36b3f37bddcbc4986b1687d915693d, type: 3}
-    RightHand: {fileID: 0}
-    LeftHand: {fileID: 0}
-    SingleHanded: 1
     ActiveEffects: []
     method: 0
   - Name: LaserPistol
@@ -4075,11 +3983,78 @@ MonoBehaviour:
     TracerEffectTime: 2
     ImpactEffect: {fileID: 1384676760634654, guid: cbc9b7b84ce78b8469e2097e576ad5ed, type: 3}
     ImpactEffectTime: 2
+    lastHit: {fileID: 0}
     UseCustomHandPositions: 0
-    muzzle: {fileID: -4651196764475442156, guid: 3753b585bb117b24bbfaf8718fc2eb4c, type: 3}
+    muzzle: {x: 0, y: 0.05, z: 0.5}
     RightHand: {fileID: 0}
     LeftHand: {fileID: 0}
     SingleHanded: 1
+    ActiveEffects: []
+    method: 0
+  - Name: Pistol
+    TargetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    UsageRate: 150
+    PositionOffset: {x: 0, y: 0, z: 0}
+    RotationOffset: {x: -90, y: 90, z: 0}
+    DropPercentage: 1
+    RecentlyUsed: 0
+    TimeSinceUsed: 0
+    Damage: 5
+    ShotCount: 1
+    spread: 5
+    Range: 50
+    SingleFire: 1
+    HitScan: 1
+    FireSoundName: pistol-1
+    WeaponModel: {fileID: 919132149155446097, guid: ca36b3f37bddcbc4986b1687d915693d, type: 3}
+    projectile: {fileID: 0}
+    FireEffect: {fileID: 1769621416249240, guid: 576051583fc1f8e419d415424746b5af, type: 3}
+    FireEffectTime: 3
+    TracerEffect: {fileID: 0}
+    TracerEffectTime: 2
+    ImpactEffect: {fileID: 1384676760634654, guid: cbc9b7b84ce78b8469e2097e576ad5ed, type: 3}
+    ImpactEffectTime: 3
+    lastHit: {fileID: 0}
+    UseCustomHandPositions: 0
+    muzzle: {x: 0, y: 0.05, z: 0.5}
+    RightHand: {fileID: 0}
+    LeftHand: {fileID: 0}
+    SingleHanded: 1
+    ActiveEffects: []
+    method: 0
+  - Name: Shotgun
+    TargetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    UsageRate: 1200
+    PositionOffset: {x: 0, y: 0, z: 0}
+    RotationOffset: {x: -90, y: -90, z: 0}
+    DropPercentage: 0.7
+    RecentlyUsed: 0
+    TimeSinceUsed: 0
+    Damage: 5
+    ShotCount: 5
+    spread: 10
+    Range: 10
+    SingleFire: 1
+    HitScan: 1
+    FireSoundName: shotgun-1
+    WeaponModel: {fileID: 919132149155446097, guid: 4b877973400fa08419fa3e52bb524bed, type: 3}
+    projectile: {fileID: 0}
+    FireEffect: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
+    FireEffectTime: 3
+    TracerEffect: {fileID: 0}
+    TracerEffectTime: 2
+    ImpactEffect: {fileID: 1384676760634654, guid: cbc9b7b84ce78b8469e2097e576ad5ed, type: 3}
+    ImpactEffectTime: 3
+    lastHit: {fileID: 0}
+    UseCustomHandPositions: 1
+    muzzle: {x: 0, y: 0.05, z: 0.6}
+    RightHand: {fileID: -7040017115585985965, guid: 4b877973400fa08419fa3e52bb524bed, type: 3}
+    LeftHand: {fileID: -1982681163204666382, guid: 4b877973400fa08419fa3e52bb524bed, type: 3}
+    SingleHanded: 0
     ActiveEffects: []
     method: 0
   - Name: AK-47-Gold
@@ -4101,16 +4076,50 @@ MonoBehaviour:
     FireSoundName: ak-1
     WeaponModel: {fileID: 919132149155446097, guid: 649d93a9a77b378428d053aff9c4dbb1, type: 3}
     projectile: {fileID: 0}
-    FireEffect: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
+    FireEffect: {fileID: 1769621416249240, guid: 576051583fc1f8e419d415424746b5af, type: 3}
     FireEffectTime: 3
-    TracerEffect: {fileID: 1130945418854432, guid: a7a6023a6802b1f40870e07f85b5b985, type: 3}
+    TracerEffect: {fileID: 0}
     TracerEffectTime: 2
-    ImpactEffect: {fileID: 0}
+    ImpactEffect: {fileID: 1384676760634654, guid: cbc9b7b84ce78b8469e2097e576ad5ed, type: 3}
     ImpactEffectTime: 3
+    lastHit: {fileID: 0}
     UseCustomHandPositions: 0
-    muzzle: {fileID: -6525159927170918547, guid: 649d93a9a77b378428d053aff9c4dbb1, type: 3}
-    RightHand: {fileID: 0}
-    LeftHand: {fileID: 0}
+    muzzle: {x: 0, y: 0.05, z: 0.75}
+    RightHand: {fileID: 3207036880898257022, guid: 649d93a9a77b378428d053aff9c4dbb1, type: 3}
+    LeftHand: {fileID: -881903683776814954, guid: 649d93a9a77b378428d053aff9c4dbb1, type: 3}
+    SingleHanded: 0
+    ActiveEffects: []
+    method: 0
+  - Name: AK-47
+    TargetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    UsageRate: 120
+    PositionOffset: {x: 0, y: 0.05, z: 0.22}
+    RotationOffset: {x: -90, y: 90, z: 0}
+    DropPercentage: 0.1
+    RecentlyUsed: 0
+    TimeSinceUsed: 0
+    Damage: 3
+    ShotCount: 1
+    spread: 5
+    Range: 50
+    SingleFire: 0
+    HitScan: 1
+    FireSoundName: ak-1
+    WeaponModel: {fileID: 919132149155446097, guid: e5b9af22294241c4ab22d8917d1aced1, type: 3}
+    projectile: {fileID: 0}
+    FireEffect: {fileID: 1769621416249240, guid: 576051583fc1f8e419d415424746b5af, type: 3}
+    FireEffectTime: 3
+    TracerEffect: {fileID: 0}
+    TracerEffectTime: 2
+    ImpactEffect: {fileID: 1384676760634654, guid: cbc9b7b84ce78b8469e2097e576ad5ed, type: 3}
+    ImpactEffectTime: 3
+    lastHit: {fileID: 0}
+    UseCustomHandPositions: 1
+    muzzle: {x: 0, y: 0.05, z: 0.7}
+    RightHand: {fileID: 3207036880898257022, guid: e5b9af22294241c4ab22d8917d1aced1, type: 3}
+    LeftHand: {fileID: -881903683776814954, guid: e5b9af22294241c4ab22d8917d1aced1, type: 3}
     SingleHanded: 0
     ActiveEffects: []
     method: 0
@@ -4427,14 +4436,6 @@ MonoBehaviour:
     audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     type: 5
     source: {fileID: 0}
-  - name: laser-1
-    clip: {fileID: 8300000, guid: 95eb9f106585d0744ba2c3ed006c5e6c, type: 3}
-    volume: 0.7
-    pitch: 1.2
-    loop: 0
-    audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
-    type: 5
-    source: {fileID: 0}
   - name: ak-1
     clip: {fileID: 8300000, guid: 1aa760928403eed4eb9ecd4b04c46078, type: 3}
     volume: 0.7
@@ -4447,6 +4448,22 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 05380a5fc46e44343b7879c895f502bc, type: 3}
     volume: 0.7
     pitch: 0.8
+    loop: 0
+    audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 5
+    source: {fileID: 0}
+  - name: laser-1
+    clip: {fileID: 8300000, guid: 95eb9f106585d0744ba2c3ed006c5e6c, type: 3}
+    volume: 0.7
+    pitch: 1.2
+    loop: 0
+    audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 5
+    source: {fileID: 0}
+  - name: laser-2
+    clip: {fileID: 8300000, guid: c1077e69228a8be47a76915031e477a9, type: 3}
+    volume: 0.7
+    pitch: 1.2
     loop: 0
     audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     type: 5
@@ -4714,3 +4731,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1387445190114668874
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1387445191342748104, guid: 07bb7c24c76ca784d83dd34c42302a06, type: 3}
+      propertyPath: m_Name
+      value: ItemPickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387445191342748105, guid: 07bb7c24c76ca784d83dd34c42302a06, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387445191342748105, guid: 07bb7c24c76ca784d83dd34c42302a06, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387445191342748105, guid: 07bb7c24c76ca784d83dd34c42302a06, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387445191342748105, guid: 07bb7c24c76ca784d83dd34c42302a06, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387445191342748105, guid: 07bb7c24c76ca784d83dd34c42302a06, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387445191342748105, guid: 07bb7c24c76ca784d83dd34c42302a06, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387445191342748105, guid: 07bb7c24c76ca784d83dd34c42302a06, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387445191342748105, guid: 07bb7c24c76ca784d83dd34c42302a06, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387445191342748105, guid: 07bb7c24c76ca784d83dd34c42302a06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387445191342748105, guid: 07bb7c24c76ca784d83dd34c42302a06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387445191342748105, guid: 07bb7c24c76ca784d83dd34c42302a06, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 07bb7c24c76ca784d83dd34c42302a06, type: 3}

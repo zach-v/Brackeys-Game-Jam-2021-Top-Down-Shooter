@@ -2,6 +2,7 @@ using Assets.Scripts.Components;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Profiling;
 using UnityEngine;
 using static BiomeManager;
 
@@ -17,7 +18,7 @@ public class PlayerManager : MonoBehaviour
 	[SerializeField] private Transform GunPoint2;
 	private Vector3 GunPointOriginalPosition;
 	private Vector3 GunPoint2OriginalPosition;
-	[ReadOnly] [SerializeField] private GameObject ItemInHand;
+	[ReadOnly] [SerializeField] private GameObject itemInHand;
 	[ReadOnly] [SerializeField] private Gun currentGun = null;
 	[ReadOnly] [SerializeField] private List<Gun> gunInventory;
 	[ReadOnly] [SerializeField] private Grenade currentGrenade;
@@ -99,40 +100,59 @@ public class PlayerManager : MonoBehaviour
 			if (Input.GetButton("Fire1") && continueToFire)
 			{
 				// Muzzle position
-				Vector3 muzzlePosition = ItemInHand.transform.position + currentGun.muzzle.transform.position;
+				Vector3 muzzlePosition = transform.TransformPoint(currentGun.muzzle + GunPoint.localPosition);
 
 				// For all shots in a single fire operation
 				for (int i = 0; i < currentGun.ShotCount; i++)
 				{
 					// Create some variation in spread
-					Vector3 betterSpread = currentGun.Spread(GunPoint.forward, currentGun.Range, currentGun.spread);
-					// Make a new gameobject for the tracers
-					GameObject fireEffect = Instantiate(currentGun.FireEffect, muzzlePosition,
-								Quaternion.LookRotation(betterSpread), transform);
-					// Attach die after time to it and set the time
-					killSelf killSelfComponentFireEffect = fireEffect.AddComponent(typeof(killSelf)) as killSelf;
-					killSelfComponentFireEffect.timeTillDeath = currentGun.FireEffectTime;
-					// Add it to the list of effects
-					currentGun.ActiveEffects.Add(fireEffect);
+					Vector3 bulletSpread = currentGun.Spread(GunPoint.forward, currentGun.Range, currentGun.spread);
+					// if there is a fire effect to begin with
+					if (currentGun.FireEffect != null)
+					{
+						// Make a new gameobject for the fire effect
+						GameObject fireEffect = Instantiate(currentGun.FireEffect, muzzlePosition,
+									Quaternion.LookRotation(bulletSpread), transform);
+						// Attach die after time to it and set the time
+						killSelf killSelfComponentFireEffect = fireEffect.AddComponent(typeof(killSelf)) as killSelf;
+						killSelfComponentFireEffect.timeTillDeath = currentGun.FireEffectTime;
+						// Add it to the list of effects
+						currentGun.ActiveEffects.Add(fireEffect);
+					}
+					// if there is a tracer effect to begin with
+					if (currentGun.TracerEffect != null)
+					{
+						// Make a new gameobject for the tracer effect
+						GameObject tracerEffect = Instantiate(currentGun.TracerEffect, muzzlePosition,
+								Quaternion.LookRotation(bulletSpread));
+						// Attach die after time to it and set the time
+						killSelf killSelfComponentTracerEffect = tracerEffect.AddComponent(typeof(killSelf)) as killSelf;
+						killSelfComponentTracerEffect.timeTillDeath = currentGun.TracerEffectTime;
+						// Add it to the list of effects
+						currentGun.ActiveEffects.Add(tracerEffect);
+					}
 					// If the weapon is hitscan
 					if (currentGun.HitScan)
 					{
 						// Handle damage dealing
-						Debug.DrawRay(muzzlePosition, betterSpread, Color.green);
-						if (Physics.Raycast(muzzlePosition, betterSpread, out RaycastHit hit))
+						Debug.DrawRay(muzzlePosition, bulletSpread, Color.green);
+						if (Physics.Raycast(muzzlePosition, bulletSpread, out RaycastHit hit))
 						{
 							if (hit.collider.gameObject.layer.Equals(currentGun.TargetLayer.MaskToLayer()))
 							{
 								hit.collider.gameObject.GetComponent<HealthScript>().CurrentHealth -= currentGun.Damage;
 							}
-							// Create the impact effect
-							GameObject impactEffect = Instantiate(currentGun.ImpactEffect,
-								hit.point, Quaternion.LookRotation(betterSpread));
-							// Attach die after time to it and set the time
-							killSelf killSelfComponentHitEffect = impactEffect.AddComponent(typeof(killSelf)) as killSelf;
-							killSelfComponentHitEffect.timeTillDeath = currentGun.ImpactEffectTime;
-							// Add it to the list of effects
-							currentGun.ActiveEffects.Add(impactEffect);
+							if (currentGun.ImpactEffect != null)
+							{
+								// Create the impact effect
+								GameObject impactEffect = Instantiate(currentGun.ImpactEffect,
+								hit.point, Quaternion.LookRotation(bulletSpread));
+								// Attach die after time to it and set the time
+								killSelf killSelfComponentHitEffect = impactEffect.AddComponent(typeof(killSelf)) as killSelf;
+								killSelfComponentHitEffect.timeTillDeath = currentGun.ImpactEffectTime;
+								// Add it to the list of effects
+								currentGun.ActiveEffects.Add(impactEffect);
+							}
 						}
 					}
 					else // Not hitscan
@@ -169,10 +189,10 @@ public class PlayerManager : MonoBehaviour
 	private void SetCurrentGun(int index)
 	{
 		// Remove previous item
-		Destroy(ItemInHand);
+		Destroy(itemInHand);
 		// Add new one based on index
 		currentGun = gunInventory[index];
-		ItemInHand = Instantiate(currentGun.WeaponModel, GunPoint.position + currentGun.PositionOffset,
+		itemInHand = Instantiate(currentGun.WeaponModel, GunPoint.position + currentGun.PositionOffset,
 			Quaternion.Euler(GunPoint.rotation.eulerAngles + currentGun.RotationOffset), transform);
 
 		if (currentGun.SingleHanded)

@@ -45,7 +45,7 @@ public class AudioManager : MonoBehaviour
 	/// </summary>
 	/// <param name="name"></param>
 	/// <param name="type"></param>
-	public void Play(string name, SoundType type = SoundType.Default, float pitchVariation = 0)
+	public void Play(string name, SoundType type = SoundType.Default, float pitchVariation = 0, bool oneShot = true)
 	{
 		try
 		{
@@ -56,7 +56,10 @@ public class AudioManager : MonoBehaviour
 				CurrentMusic = s;
 			}
 			s.source.pitch = UnityEngine.Random.Range(-pitchVariation + s.pitch, pitchVariation + s.pitch);
-			s.source.Play();
+			if (oneShot)
+				s.source.PlayOneShot(s.clip);
+			else
+				s.source.Play();
 		}
 		catch (Exception e)
 		{

@@ -26,9 +26,10 @@ public class Gun : WeaponBase
 	public float TracerEffectTime = 3;
 	public GameObject ImpactEffect;
 	public float ImpactEffectTime = 3;
+	[ReadOnly] public GameObject lastHit;
 	[Header("Weapon Handling")]
 	public bool UseCustomHandPositions = false;
-	public GameObject muzzle;
+	public Vector3 muzzle;
 	public GameObject RightHand;
 	public GameObject LeftHand;
 	public bool SingleHanded = true;
