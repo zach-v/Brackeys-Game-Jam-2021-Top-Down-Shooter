@@ -3618,7 +3618,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439031204}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c55b343f042fd490783479f4377a291d, type: 3}
   m_Name: 
@@ -3949,6 +3949,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GunList:
+  - Name: AK-47-Gold
+    TargetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    UsageRate: 90
+    PositionOffset: {x: 0, y: 0.05, z: 0.22}
+    RotationOffset: {x: -90, y: 90, z: 0}
+    DropPercentage: 0.1
+    RecentlyUsed: 0
+    TimeSinceUsed: 0
+    Damage: 5
+    ShotCount: 1
+    spread: 1
+    SingleFire: 0
+    HitScan: 1
+    FireSoundName: ak-1
+    WeaponModel: {fileID: 919132149155446097, guid: 649d93a9a77b378428d053aff9c4dbb1, type: 3}
+    projectile: {fileID: 0}
+    FireEffect: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
+    TracerEffect: {fileID: 1130945418854432, guid: a7a6023a6802b1f40870e07f85b5b985, type: 3}
+    UseCustomHandPositions: 0
+    RightHand: {fileID: 0}
+    LeftHand: {fileID: 0}
+    TracerEffectTime: 2
+    SingleHanded: 0
+    Impact: {fileID: 1384676760634654, guid: 289ba3245c9c98c42aeb93d5f45a2248, type: 3}
+    ActiveBullets: []
+    method: 0
   - Name: Shotgun
     TargetLayer:
       serializedVersion: 2
@@ -4050,34 +4078,6 @@ MonoBehaviour:
     HitScan: 1
     FireSoundName: ak-1
     WeaponModel: {fileID: 919132149155446097, guid: e5b9af22294241c4ab22d8917d1aced1, type: 3}
-    projectile: {fileID: 0}
-    FireEffect: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
-    TracerEffect: {fileID: 1130945418854432, guid: a7a6023a6802b1f40870e07f85b5b985, type: 3}
-    UseCustomHandPositions: 0
-    RightHand: {fileID: 0}
-    LeftHand: {fileID: 0}
-    TracerEffectTime: 2
-    SingleHanded: 0
-    Impact: {fileID: 1384676760634654, guid: 289ba3245c9c98c42aeb93d5f45a2248, type: 3}
-    ActiveBullets: []
-    method: 0
-  - Name: AK-47-Gold
-    TargetLayer:
-      serializedVersion: 2
-      m_Bits: 128
-    UsageRate: 90
-    PositionOffset: {x: 0, y: 0.05, z: 0.22}
-    RotationOffset: {x: -90, y: 90, z: 0}
-    DropPercentage: 0.1
-    RecentlyUsed: 0
-    TimeSinceUsed: 0
-    Damage: 5
-    ShotCount: 1
-    spread: 1
-    SingleFire: 0
-    HitScan: 1
-    FireSoundName: ak-1
-    WeaponModel: {fileID: 919132149155446097, guid: 649d93a9a77b378428d053aff9c4dbb1, type: 3}
     projectile: {fileID: 0}
     FireEffect: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
     TracerEffect: {fileID: 1130945418854432, guid: a7a6023a6802b1f40870e07f85b5b985, type: 3}
