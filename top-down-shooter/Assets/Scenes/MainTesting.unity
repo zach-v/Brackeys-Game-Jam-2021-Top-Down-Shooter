@@ -552,7 +552,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21056
+  m_Name: pb_Mesh21098
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1702,6 +1702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 807187883}
+  audioManager: {fileID: 1983664224}
   cam: {fileID: 963194227}
   moveSpeed: 4
   gravity: 10
@@ -1709,6 +1710,11 @@ MonoBehaviour:
   degreeOffset: 90
   AllowedToMove: 1
   AllowedToTurn: 1
+  TimeToStepSoundJog: 0.3
+  TimeToStepSoundRun: 0.2
+  numberOfJogSounds: 0
+  numberOfRunSounds: 0
+  currentTimeToSound: 0
   movement: {x: 0, y: 0}
   mousePos: {x: 0, y: 0, z: 0}
   angle: 0
@@ -1764,8 +1770,6 @@ MonoBehaviour:
   audioManager: {fileID: 1983664224}
   weaponManager: {fileID: 1697789940}
   biomeManager: {fileID: 1264085158}
-  TimeToStepSoundJog: 0.3
-  TimeToStepSoundRun: 0.2
   GunPoint: {fileID: 1276865147}
   GunPoint2: {fileID: 1323398661}
   ItemInHand: {fileID: 0}
@@ -1783,20 +1787,24 @@ MonoBehaviour:
     Damage: 0
     ShotCount: 1
     spread: 1
+    Range: 50
     SingleFire: 0
     HitScan: 1
     FireSoundName: pistol-1
     WeaponModel: {fileID: 0}
     projectile: {fileID: 0}
     FireEffect: {fileID: 0}
+    FireEffectTime: 3
     TracerEffect: {fileID: 0}
+    TracerEffectTime: 1
+    ImpactEffect: {fileID: 0}
+    ImpactEffectTime: 3
     UseCustomHandPositions: 0
+    muzzle: {fileID: 0}
     RightHand: {fileID: 0}
     LeftHand: {fileID: 0}
-    TracerEffectTime: 1
     SingleHanded: 1
-    Impact: {fileID: 0}
-    ActiveBullets: []
+    ActiveEffects: []
     method: 0
   gunInventory: []
   currentGrenade:
@@ -1819,9 +1827,6 @@ MonoBehaviour:
   ItemsTableGrid: {fileID: 397721347}
   currentBiome: 3
   previousBiome: 0
-  currentTimeToSound: 0
-  numberOfJogSounds: 0
-  numberOfRunSounds: 0
   continueToFire: 1
 --- !u!136 &807187887
 CapsuleCollider:
@@ -3949,33 +3954,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GunList:
-  - Name: AK-47-Gold
+  - Name: AK-47
     TargetLayer:
       serializedVersion: 2
       m_Bits: 128
-    UsageRate: 90
+    UsageRate: 120
     PositionOffset: {x: 0, y: 0.05, z: 0.22}
     RotationOffset: {x: -90, y: 90, z: 0}
     DropPercentage: 0.1
     RecentlyUsed: 0
     TimeSinceUsed: 0
-    Damage: 5
+    Damage: 3
     ShotCount: 1
     spread: 1
+    Range: 50
     SingleFire: 0
     HitScan: 1
     FireSoundName: ak-1
-    WeaponModel: {fileID: 919132149155446097, guid: 649d93a9a77b378428d053aff9c4dbb1, type: 3}
+    WeaponModel: {fileID: 919132149155446097, guid: e5b9af22294241c4ab22d8917d1aced1, type: 3}
     projectile: {fileID: 0}
-    FireEffect: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
-    TracerEffect: {fileID: 1130945418854432, guid: a7a6023a6802b1f40870e07f85b5b985, type: 3}
+    FireEffect: {fileID: 1769621416249240, guid: 576051583fc1f8e419d415424746b5af, type: 3}
+    FireEffectTime: 3
+    TracerEffect: {fileID: 0}
+    TracerEffectTime: 2
+    ImpactEffect: {fileID: 1384676760634654, guid: cbc9b7b84ce78b8469e2097e576ad5ed, type: 3}
+    ImpactEffectTime: 3
     UseCustomHandPositions: 0
+    muzzle: {fileID: -6525159927170918547, guid: e5b9af22294241c4ab22d8917d1aced1, type: 3}
     RightHand: {fileID: 0}
     LeftHand: {fileID: 0}
-    TracerEffectTime: 2
     SingleHanded: 0
-    Impact: {fileID: 1384676760634654, guid: 289ba3245c9c98c42aeb93d5f45a2248, type: 3}
-    ActiveBullets: []
+    ActiveEffects: []
     method: 0
   - Name: Shotgun
     TargetLayer:
@@ -3990,20 +3999,24 @@ MonoBehaviour:
     Damage: 5
     ShotCount: 5
     spread: 5
+    Range: 50
     SingleFire: 1
     HitScan: 1
     FireSoundName: shotgun-1
     WeaponModel: {fileID: 919132149155446097, guid: 4b877973400fa08419fa3e52bb524bed, type: 3}
     projectile: {fileID: 0}
     FireEffect: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
-    TracerEffect: {fileID: 1130945418854432, guid: a7a6023a6802b1f40870e07f85b5b985, type: 3}
+    FireEffectTime: 3
+    TracerEffect: {fileID: 0}
+    TracerEffectTime: 2
+    ImpactEffect: {fileID: 1384676760634654, guid: cbc9b7b84ce78b8469e2097e576ad5ed, type: 3}
+    ImpactEffectTime: 3
     UseCustomHandPositions: 1
+    muzzle: {fileID: 0}
     RightHand: {fileID: -7040017115585985965, guid: 4b877973400fa08419fa3e52bb524bed, type: 3}
     LeftHand: {fileID: -1982681163204666382, guid: 4b877973400fa08419fa3e52bb524bed, type: 3}
-    TracerEffectTime: 2
     SingleHanded: 0
-    Impact: {fileID: 1384676760634654, guid: 289ba3245c9c98c42aeb93d5f45a2248, type: 3}
-    ActiveBullets: []
+    ActiveEffects: []
     method: 0
   - Name: Pistol
     TargetLayer:
@@ -4018,20 +4031,24 @@ MonoBehaviour:
     Damage: 5
     ShotCount: 1
     spread: 3
+    Range: 50
     SingleFire: 1
     HitScan: 1
     FireSoundName: pistol-1
     WeaponModel: {fileID: 919132149155446097, guid: ca36b3f37bddcbc4986b1687d915693d, type: 3}
     projectile: {fileID: 0}
-    FireEffect: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
-    TracerEffect: {fileID: 1130945418854432, guid: a7a6023a6802b1f40870e07f85b5b985, type: 3}
+    FireEffect: {fileID: 1769621416249240, guid: 576051583fc1f8e419d415424746b5af, type: 3}
+    FireEffectTime: 3
+    TracerEffect: {fileID: 0}
+    TracerEffectTime: 2
+    ImpactEffect: {fileID: 1384676760634654, guid: cbc9b7b84ce78b8469e2097e576ad5ed, type: 3}
+    ImpactEffectTime: 3
     UseCustomHandPositions: 0
+    muzzle: {fileID: -1998635350809678181, guid: ca36b3f37bddcbc4986b1687d915693d, type: 3}
     RightHand: {fileID: 0}
     LeftHand: {fileID: 0}
-    TracerEffectTime: 2
     SingleHanded: 1
-    Impact: {fileID: 1384676760634654, guid: 289ba3245c9c98c42aeb93d5f45a2248, type: 3}
-    ActiveBullets: []
+    ActiveEffects: []
     method: 0
   - Name: LaserPistol
     TargetLayer:
@@ -4046,48 +4063,56 @@ MonoBehaviour:
     Damage: 80
     ShotCount: 1
     spread: 1
+    Range: 50
     SingleFire: 1
     HitScan: 1
     FireSoundName: laser-1
     WeaponModel: {fileID: 919132149155446097, guid: 3753b585bb117b24bbfaf8718fc2eb4c, type: 3}
     projectile: {fileID: 0}
     FireEffect: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
+    FireEffectTime: 2
     TracerEffect: {fileID: 1062685050423962, guid: 3536bfd57b96d984896616db8a104ad4, type: 3}
+    TracerEffectTime: 2
+    ImpactEffect: {fileID: 1384676760634654, guid: cbc9b7b84ce78b8469e2097e576ad5ed, type: 3}
+    ImpactEffectTime: 2
     UseCustomHandPositions: 0
+    muzzle: {fileID: -4651196764475442156, guid: 3753b585bb117b24bbfaf8718fc2eb4c, type: 3}
     RightHand: {fileID: 0}
     LeftHand: {fileID: 0}
-    TracerEffectTime: 2
     SingleHanded: 1
-    Impact: {fileID: 1384676760634654, guid: 289ba3245c9c98c42aeb93d5f45a2248, type: 3}
-    ActiveBullets: []
+    ActiveEffects: []
     method: 0
-  - Name: AK-47
+  - Name: AK-47-Gold
     TargetLayer:
       serializedVersion: 2
       m_Bits: 128
-    UsageRate: 120
+    UsageRate: 90
     PositionOffset: {x: 0, y: 0.05, z: 0.22}
     RotationOffset: {x: -90, y: 90, z: 0}
     DropPercentage: 0.1
     RecentlyUsed: 0
     TimeSinceUsed: 0
-    Damage: 3
+    Damage: 5
     ShotCount: 1
     spread: 1
+    Range: 50
     SingleFire: 0
     HitScan: 1
     FireSoundName: ak-1
-    WeaponModel: {fileID: 919132149155446097, guid: e5b9af22294241c4ab22d8917d1aced1, type: 3}
+    WeaponModel: {fileID: 919132149155446097, guid: 649d93a9a77b378428d053aff9c4dbb1, type: 3}
     projectile: {fileID: 0}
     FireEffect: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
+    FireEffectTime: 3
     TracerEffect: {fileID: 1130945418854432, guid: a7a6023a6802b1f40870e07f85b5b985, type: 3}
+    TracerEffectTime: 2
+    ImpactEffect: {fileID: 0}
+    ImpactEffectTime: 3
     UseCustomHandPositions: 0
+    muzzle: {fileID: -6525159927170918547, guid: 649d93a9a77b378428d053aff9c4dbb1, type: 3}
     RightHand: {fileID: 0}
     LeftHand: {fileID: 0}
-    TracerEffectTime: 2
     SingleHanded: 0
-    Impact: {fileID: 1384676760634654, guid: 289ba3245c9c98c42aeb93d5f45a2248, type: 3}
-    ActiveBullets: []
+    ActiveEffects: []
     method: 0
   GrenadeList: []
   ItemList: []

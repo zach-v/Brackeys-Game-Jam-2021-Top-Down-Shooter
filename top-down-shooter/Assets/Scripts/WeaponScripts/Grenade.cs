@@ -8,4 +8,9 @@ public class Grenade : WeaponBase
 {
 	[Header("Toss Variables")]
 	public float TossDistance = 5;
+
+	public override void Method()
+	{
+		
+	}
 }

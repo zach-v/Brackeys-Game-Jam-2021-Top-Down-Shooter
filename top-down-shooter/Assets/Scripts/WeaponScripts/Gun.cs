@@ -13,6 +13,7 @@ public class Gun : WeaponBase
 	public float Damage = 1;
 	public int ShotCount = 1;
 	public float spread = 0.01f; // In percentage
+	public float Range = 50;
 	public bool SingleFire = false;
 	public bool HitScan = true;
 	public string FireSoundName = "pistol-1";
@@ -20,22 +21,25 @@ public class Gun : WeaponBase
 	public GameObject WeaponModel;
 	public Projectile projectile;
 	public GameObject FireEffect;
+	public float FireEffectTime = 3;
 	public GameObject TracerEffect;
+	public float TracerEffectTime = 3;
+	public GameObject ImpactEffect;
+	public float ImpactEffectTime = 3;
+	[Header("Weapon Handling")]
 	public bool UseCustomHandPositions = false;
+	public GameObject muzzle;
 	public GameObject RightHand;
 	public GameObject LeftHand;
-
-	public float TracerEffectTime = 3;
 	public bool SingleHanded = true;
-	public GameObject Impact;
-	[ReadOnly] public List<GameObject> ActiveBullets;
+	[ReadOnly] public List<GameObject> ActiveEffects;
 	[Header("Other")]
 	public SpecialMethod method = SpecialMethod.None;
 	public Gun()
 	{
-		ActiveBullets = new List<GameObject>();
+		ActiveEffects = new List<GameObject>();
 	}
-	public void Method(SpecialMethod method)
+	public override void Method()
 	{
 		switch (method)
 		{

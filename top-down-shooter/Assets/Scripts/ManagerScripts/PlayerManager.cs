@@ -12,9 +12,6 @@ public class PlayerManager : MonoBehaviour
 	[SerializeField] private AudioManager audioManager;
 	[SerializeField] private ItemManager weaponManager;
 	[SerializeField] private BiomeManager biomeManager;
-	[Header("Walking Sound Fields")]
-	[SerializeField] private float TimeToStepSoundJog = 0.9f;
-	[SerializeField] private float TimeToStepSoundRun = 0.5f;
 	[Header("Item Fields")]
 	[SerializeField] private Transform GunPoint;
 	[SerializeField] private Transform GunPoint2;
@@ -34,9 +31,6 @@ public class PlayerManager : MonoBehaviour
 	[Header("Other Readonlys")]
 	[SerializeField] private Biome currentBiome = Biome.Planes;
 	[ReadOnly] [SerializeField] private Biome previousBiome = Biome.Void;
-	[ReadOnly] [SerializeField] private float currentTimeToSound = 0;
-	[ReadOnly] [SerializeField] private int numberOfJogSounds = 0;
-	[ReadOnly] [SerializeField] private int numberOfRunSounds = 0;
 	[ReadOnly] [SerializeField] private bool continueToFire = true;
 
 	public PlayerManager()
@@ -49,20 +43,8 @@ public class PlayerManager : MonoBehaviour
 		GunPointOriginalPosition = GunPoint.position;
 		GunPoint2OriginalPosition = GunPoint2.position;
 		// Set current gun to first one in list
-		AddWeaponToInventory(weaponManager.GunList[0]);
+		AddItemToInventory(weaponManager.GunList[0]);
 		SetCurrentGun(0);
-		// Populate random sound list
-		foreach (Sound s in audioManager.itemSounds)
-		{
-			if (s.name.Contains("Dirt_Jogging-"))
-			{
-				numberOfJogSounds++;
-			}
-			if (s.name.Contains("Dirt_Running-"))
-			{
-				numberOfRunSounds++;
-			}
-		}
 	}
 	void Start()
 	{
@@ -109,19 +91,6 @@ public class PlayerManager : MonoBehaviour
 			}
 		}
 	}
-	private void FixedUpdate()
-	{
-		if (movement.movement.magnitude >= 0.1)
-			currentTimeToSound += Time.fixedDeltaTime;
-	}
-	private void LateUpdate()
-	{
-		if (currentTimeToSound >= TimeToStepSoundJog)
-		{
-			audioManager.Play("Dirt_Jogging-" + Mathf.RoundToInt(Random.Range(1, numberOfJogSounds)), Sound.SoundType.Walking);
-			currentTimeToSound = 0;
-		}
-	}
 	private void CheckShooting()
 	{
 		// if not recently used
@@ -129,38 +98,51 @@ public class PlayerManager : MonoBehaviour
 		{
 			if (Input.GetButton("Fire1") && continueToFire)
 			{
-				// If the weapon is hitscan
-				if (currentGun.HitScan)
+				// Muzzle position
+				Vector3 muzzlePosition = ItemInHand.transform.position + currentGun.muzzle.transform.position;
+
+				// For all shots in a single fire operation
+				for (int i = 0; i < currentGun.ShotCount; i++)
 				{
-					// For all shots in a single fire operation
-					for (int i = 0; i < currentGun.ShotCount; i++)
+					// Create some variation in spread
+					Vector3 betterSpread = currentGun.Spread(GunPoint.forward, currentGun.Range, currentGun.spread);
+					// Make a new gameobject for the tracers
+					GameObject fireEffect = Instantiate(currentGun.FireEffect, muzzlePosition,
+								Quaternion.LookRotation(betterSpread), transform);
+					// Attach die after time to it and set the time
+					killSelf killSelfComponentFireEffect = fireEffect.AddComponent(typeof(killSelf)) as killSelf;
+					killSelfComponentFireEffect.timeTillDeath = currentGun.FireEffectTime;
+					// Add it to the list of effects
+					currentGun.ActiveEffects.Add(fireEffect);
+					// If the weapon is hitscan
+					if (currentGun.HitScan)
 					{
-						// Create some variation in spread
-						Vector3 betterSpread = currentGun.Spread(GunPoint.forward, 10, currentGun.spread);
-						// Make a new gameobject for the tracers
-						GameObject newBullet = Instantiate(currentGun.TracerEffect, GunPoint.position, Quaternion.LookRotation(betterSpread));
-						// Attach die after time to it and set the time
-						killSelf killSelfComponent = newBullet.AddComponent(typeof(killSelf)) as killSelf;
-						killSelfComponent.timeTillDeath = currentGun.TracerEffectTime;
-						// Add it to the list of bullets
-						currentGun.ActiveBullets.Add(newBullet);
 						// Handle damage dealing
-						Debug.DrawRay(GunPoint.position, betterSpread, Color.green);
-						if (Physics.Raycast(GunPoint.position, betterSpread, out RaycastHit hit))
+						Debug.DrawRay(muzzlePosition, betterSpread, Color.green);
+						if (Physics.Raycast(muzzlePosition, betterSpread, out RaycastHit hit))
 						{
 							if (hit.collider.gameObject.layer.Equals(currentGun.TargetLayer.MaskToLayer()))
 							{
 								hit.collider.gameObject.GetComponent<HealthScript>().CurrentHealth -= currentGun.Damage;
 							}
+							// Create the impact effect
+							GameObject impactEffect = Instantiate(currentGun.ImpactEffect,
+								hit.point, Quaternion.LookRotation(betterSpread));
+							// Attach die after time to it and set the time
+							killSelf killSelfComponentHitEffect = impactEffect.AddComponent(typeof(killSelf)) as killSelf;
+							killSelfComponentHitEffect.timeTillDeath = currentGun.ImpactEffectTime;
+							// Add it to the list of effects
+							currentGun.ActiveEffects.Add(impactEffect);
 						}
 					}
-					// Play fire sound
-					audioManager.Play(currentGun.FireSoundName);
+					else // Not hitscan
+					{
+						// TODO Create projectile system for shooting projectile based weapons
+					}
 				}
-				else // Not hitscan
-				{
-					// TODO Create projectile system for shooting projectile based weapons
-				}
+				// Play fire sound
+				audioManager.Play(currentGun.FireSoundName, Sound.SoundType.Item, 0.075f);
+				// If single fire, toggle continue fire
 				if (currentGun.SingleFire)
 				{
 					continueToFire = false;
@@ -174,12 +156,14 @@ public class PlayerManager : MonoBehaviour
 		}
 	}
 	#endregion
-	private int GetIndexOfType<T>(T weapon) where T : WeaponBase
+	private int GetIndexOfType<T>(T item) where T : ItemInterface
 	{
 		if (typeof(T).IsEquivalentTo(typeof(Gun)))
-			return gunInventory.IndexOf(weapon as Gun);
+			return gunInventory.IndexOf(item as Gun);
 		if (typeof(T).IsEquivalentTo(typeof(Grenade)))
-			return grenadeInventory.IndexOf(weapon as Grenade);
+			return grenadeInventory.IndexOf(item as Grenade);
+		if (typeof(T).IsEquivalentTo(typeof(Item)))
+			return itemInventory.IndexOf(item as Item);
 		return -1;
 	}
 	private void SetCurrentGun(int index)
@@ -200,14 +184,16 @@ public class PlayerManager : MonoBehaviour
 			GunPoint2.position = GunPoint2OriginalPosition;
 		}
 	}
-	public bool AddWeaponToInventory(WeaponBase weapon)
+	public bool AddItemToInventory<T>(T item) where T : ItemInterface
 	{
 		try
 		{
-			if (weapon.GetType().IsEquivalentTo(typeof(Gun)))
-				gunInventory.Add(weapon as Gun);
-			if (weapon.GetType().IsEquivalentTo(typeof(Grenade)))
-				grenadeInventory.Add(weapon as Grenade);
+			if (item.GetType().IsEquivalentTo(typeof(Gun)))
+				gunInventory.Add(item as Gun);
+			if (item.GetType().IsEquivalentTo(typeof(Grenade)))
+				grenadeInventory.Add(item as Grenade);
+			if (item.GetType().IsEquivalentTo(typeof(Item)))
+				itemInventory.Add(item as Item);
 		}
 		catch (System.Exception)
 		{
@@ -220,13 +206,13 @@ public class PlayerManager : MonoBehaviour
 	{
 		for (; ; )
 		{
-			currentGun.ActiveBullets.RemoveAll(bullet => bullet == null);
+			currentGun.ActiveEffects.RemoveAll(bullet => bullet == null);
 			yield return new WaitForSeconds(1);
 		}
 	}
 	private IEnumerator CheckBiome()
 	{
-		for(; ; )
+		for (; ; )
 		{
 			if (previousBiome != currentBiome)
 			{

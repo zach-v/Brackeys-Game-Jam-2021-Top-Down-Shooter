@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponBase : IEquatable<WeaponBase>
+public abstract class WeaponBase : IEquatable<WeaponBase>, ItemInterface
 {
 	[Header("Weapon Base Variables")]
 	public string Name;
@@ -20,4 +20,6 @@ public class WeaponBase : IEquatable<WeaponBase>
 	{
 		return Name == other.Name;
 	}
+
+	public abstract void Method();
 }

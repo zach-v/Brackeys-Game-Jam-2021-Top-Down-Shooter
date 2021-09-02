@@ -45,7 +45,7 @@ public class AudioManager : MonoBehaviour
 	/// </summary>
 	/// <param name="name"></param>
 	/// <param name="type"></param>
-	public void Play(string name, SoundType type = SoundType.Default)
+	public void Play(string name, SoundType type = SoundType.Default, float pitchVariation = 0)
 	{
 		try
 		{
@@ -55,6 +55,7 @@ public class AudioManager : MonoBehaviour
 				Stop(CurrentMusic.name);
 				CurrentMusic = s;
 			}
+			s.source.pitch = UnityEngine.Random.Range(-pitchVariation + s.pitch, pitchVariation + s.pitch);
 			s.source.Play();
 		}
 		catch (Exception e)

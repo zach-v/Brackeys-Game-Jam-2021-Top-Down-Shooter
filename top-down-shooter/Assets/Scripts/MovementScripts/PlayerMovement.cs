@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 	public CharacterController controller;
+	[SerializeField] private AudioManager audioManager;
 	public Camera cam;
 	public float moveSpeed = 5f;
 	public float gravity = 10;
@@ -12,6 +13,12 @@ public class PlayerMovement : MonoBehaviour
 	public float degreeOffset = 90f;
 	public bool AllowedToMove = true;
 	public bool AllowedToTurn = true;
+	[Header("Walking Sound Fields")]
+	[SerializeField] private float TimeToStepSoundJog = 0.9f;
+	[SerializeField] private float TimeToStepSoundRun = 0.5f;
+	[ReadOnly] [SerializeField] private int numberOfJogSounds = 0;
+	[ReadOnly] [SerializeField] private int numberOfRunSounds = 0;
+	[ReadOnly] [SerializeField] private float currentTimeToSound = 0;
 
 	[Header("Internal Variables")]
 	private float currentSpeed = 0;
@@ -20,6 +27,21 @@ public class PlayerMovement : MonoBehaviour
 	[ReadOnly] [SerializeField] private float angle = 0;
 	[ReadOnly] [SerializeField] private string DisplaySpeed = "0.0";
 
+	private void Awake()
+	{
+		// Populate random sound list
+		foreach (Sound s in audioManager.itemSounds)
+		{
+			if (s.name.Contains("Dirt_Jogging-"))
+			{
+				numberOfJogSounds++;
+			}
+			if (s.name.Contains("Dirt_Running-"))
+			{
+				numberOfRunSounds++;
+			}
+		}
+	}
 	void Update()
 	{
 		movement.x = Input.GetAxisRaw("Horizontal");
@@ -42,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
 				Vector3 direction = new Vector3(movement.x, 0, movement.y).normalized;
 				controller.Move(direction * Mathf.Lerp(currentSpeed, moveSpeed, accelerationTime) * Time.fixedDeltaTime);
 			}
+			if (movement.magnitude >= 0.1)
+				currentTimeToSound += Time.fixedDeltaTime;
 		}
 		if (AllowedToTurn)
 		{
@@ -55,6 +79,14 @@ public class PlayerMovement : MonoBehaviour
 
 				controller.transform.rotation = Quaternion.Euler(new Vector3(0f, -angle, 0f));
 			}
+		}
+	}
+	void LateUpdate()
+	{
+		if (currentTimeToSound >= TimeToStepSoundJog)
+		{
+			audioManager.Play("Dirt_Jogging-" + Mathf.RoundToInt(Random.Range(1, numberOfJogSounds)), Sound.SoundType.Walking);
+			currentTimeToSound = 0;
 		}
 	}
 }
