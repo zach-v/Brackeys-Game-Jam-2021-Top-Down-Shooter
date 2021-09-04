@@ -1,0 +1,246 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &88505310027560029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 88505310027560028}
+  - component: {fileID: 88505310027560027}
+  m_Layer: 0
+  m_Name: ItemManager
+  m_TagString: GameController
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &88505310027560028
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88505310027560029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &88505310027560027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88505310027560029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c400e4d1b870ff4cb96bcbcc24fb4a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GunList:
+  - Name: LaserRifle
+    TargetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    UsageRate: 300
+    PositionOffset: {x: 0, y: 0.05, z: 0.22}
+    RotationOffset: {x: -90, y: 90, z: 0}
+    DropPercentage: 0.1
+    RecentlyUsed: 0
+    TimeSinceUsed: 0
+    Damage: 50
+    ShotCount: 1
+    spread: 1
+    Range: 50
+    SingleFire: 0
+    HitScan: 1
+    FireSoundName: laser-2
+    WeaponModel: {fileID: 919132149155446097, guid: 3f06bcc6d3e4b754aa61bedb69d66ff1, type: 3}
+    projectile: {fileID: 0}
+    FireEffect: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
+    FireEffectTime: 2
+    TracerEffect: {fileID: 1062685050423962, guid: 3536bfd57b96d984896616db8a104ad4, type: 3}
+    TracerEffectTime: 2
+    ImpactEffect: {fileID: 1384676760634654, guid: cbc9b7b84ce78b8469e2097e576ad5ed, type: 3}
+    ImpactEffectTime: 2
+    lastHit: {fileID: 0}
+    UseCustomHandPositions: 1
+    muzzle: {x: 0, y: 0.05, z: 0.7}
+    RightHand: {fileID: 108924278338995610, guid: 3f06bcc6d3e4b754aa61bedb69d66ff1, type: 3}
+    LeftHand: {fileID: 107932927474431466, guid: 3f06bcc6d3e4b754aa61bedb69d66ff1, type: 3}
+    SingleHanded: 0
+    ActiveEffects: []
+    method: 0
+  - Name: AK-47-Gold
+    TargetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    UsageRate: 90
+    PositionOffset: {x: 0, y: 0.05, z: 0.22}
+    RotationOffset: {x: -90, y: 90, z: 0}
+    DropPercentage: 0.1
+    RecentlyUsed: 0
+    TimeSinceUsed: 0
+    Damage: 5
+    ShotCount: 1
+    spread: 1
+    Range: 50
+    SingleFire: 0
+    HitScan: 1
+    FireSoundName: ak-1
+    WeaponModel: {fileID: 919132149155446097, guid: 649d93a9a77b378428d053aff9c4dbb1, type: 3}
+    projectile: {fileID: 0}
+    FireEffect: {fileID: 1769621416249240, guid: 576051583fc1f8e419d415424746b5af, type: 3}
+    FireEffectTime: 3
+    TracerEffect: {fileID: 0}
+    TracerEffectTime: 2
+    ImpactEffect: {fileID: 1384676760634654, guid: cbc9b7b84ce78b8469e2097e576ad5ed, type: 3}
+    ImpactEffectTime: 3
+    lastHit: {fileID: 0}
+    UseCustomHandPositions: 0
+    muzzle: {x: 0, y: 0.05, z: 0.75}
+    RightHand: {fileID: 3207036880898257022, guid: 649d93a9a77b378428d053aff9c4dbb1, type: 3}
+    LeftHand: {fileID: -881903683776814954, guid: 649d93a9a77b378428d053aff9c4dbb1, type: 3}
+    SingleHanded: 0
+    ActiveEffects: []
+    method: 0
+  - Name: LaserPistol
+    TargetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    UsageRate: 1200
+    PositionOffset: {x: 0, y: 0, z: 0}
+    RotationOffset: {x: -90, y: 90, z: 0}
+    DropPercentage: 0.1
+    RecentlyUsed: 0
+    TimeSinceUsed: 0
+    Damage: 80
+    ShotCount: 1
+    spread: 1
+    Range: 50
+    SingleFire: 1
+    HitScan: 1
+    FireSoundName: laser-1
+    WeaponModel: {fileID: 919132149155446097, guid: 3753b585bb117b24bbfaf8718fc2eb4c, type: 3}
+    projectile: {fileID: 0}
+    FireEffect: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
+    FireEffectTime: 2
+    TracerEffect: {fileID: 1062685050423962, guid: 3536bfd57b96d984896616db8a104ad4, type: 3}
+    TracerEffectTime: 2
+    ImpactEffect: {fileID: 1384676760634654, guid: cbc9b7b84ce78b8469e2097e576ad5ed, type: 3}
+    ImpactEffectTime: 2
+    lastHit: {fileID: 0}
+    UseCustomHandPositions: 0
+    muzzle: {x: 0, y: 0.05, z: 0.5}
+    RightHand: {fileID: 0}
+    LeftHand: {fileID: 0}
+    SingleHanded: 1
+    ActiveEffects: []
+    method: 0
+  - Name: Pistol
+    TargetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    UsageRate: 150
+    PositionOffset: {x: 0, y: 0, z: 0}
+    RotationOffset: {x: -90, y: 90, z: 0}
+    DropPercentage: 1
+    RecentlyUsed: 0
+    TimeSinceUsed: 0
+    Damage: 5
+    ShotCount: 1
+    spread: 5
+    Range: 50
+    SingleFire: 1
+    HitScan: 1
+    FireSoundName: pistol-1
+    WeaponModel: {fileID: 919132149155446097, guid: ca36b3f37bddcbc4986b1687d915693d, type: 3}
+    projectile: {fileID: 0}
+    FireEffect: {fileID: 1769621416249240, guid: 576051583fc1f8e419d415424746b5af, type: 3}
+    FireEffectTime: 3
+    TracerEffect: {fileID: 0}
+    TracerEffectTime: 2
+    ImpactEffect: {fileID: 1384676760634654, guid: cbc9b7b84ce78b8469e2097e576ad5ed, type: 3}
+    ImpactEffectTime: 3
+    lastHit: {fileID: 0}
+    UseCustomHandPositions: 0
+    muzzle: {x: 0, y: 0.05, z: 0.5}
+    RightHand: {fileID: 0}
+    LeftHand: {fileID: 0}
+    SingleHanded: 1
+    ActiveEffects: []
+    method: 0
+  - Name: Shotgun
+    TargetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    UsageRate: 1200
+    PositionOffset: {x: 0, y: 0, z: 0}
+    RotationOffset: {x: -90, y: -90, z: 0}
+    DropPercentage: 0.7
+    RecentlyUsed: 0
+    TimeSinceUsed: 0
+    Damage: 5
+    ShotCount: 5
+    spread: 10
+    Range: 10
+    SingleFire: 1
+    HitScan: 1
+    FireSoundName: shotgun-1
+    WeaponModel: {fileID: 919132149155446097, guid: 4b877973400fa08419fa3e52bb524bed, type: 3}
+    projectile: {fileID: 0}
+    FireEffect: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
+    FireEffectTime: 3
+    TracerEffect: {fileID: 0}
+    TracerEffectTime: 2
+    ImpactEffect: {fileID: 1384676760634654, guid: cbc9b7b84ce78b8469e2097e576ad5ed, type: 3}
+    ImpactEffectTime: 3
+    lastHit: {fileID: 0}
+    UseCustomHandPositions: 1
+    muzzle: {x: 0, y: 0.05, z: 0.6}
+    RightHand: {fileID: -7040017115585985965, guid: 4b877973400fa08419fa3e52bb524bed, type: 3}
+    LeftHand: {fileID: -1982681163204666382, guid: 4b877973400fa08419fa3e52bb524bed, type: 3}
+    SingleHanded: 0
+    ActiveEffects: []
+    method: 0
+  - Name: AK-47
+    TargetLayer:
+      serializedVersion: 2
+      m_Bits: 128
+    UsageRate: 120
+    PositionOffset: {x: 0, y: 0.05, z: 0.22}
+    RotationOffset: {x: -90, y: 90, z: 0}
+    DropPercentage: 0.1
+    RecentlyUsed: 0
+    TimeSinceUsed: 0
+    Damage: 3
+    ShotCount: 1
+    spread: 5
+    Range: 50
+    SingleFire: 0
+    HitScan: 1
+    FireSoundName: ak-1
+    WeaponModel: {fileID: 919132149155446097, guid: e5b9af22294241c4ab22d8917d1aced1, type: 3}
+    projectile: {fileID: 0}
+    FireEffect: {fileID: 1769621416249240, guid: 576051583fc1f8e419d415424746b5af, type: 3}
+    FireEffectTime: 3
+    TracerEffect: {fileID: 0}
+    TracerEffectTime: 2
+    ImpactEffect: {fileID: 1384676760634654, guid: cbc9b7b84ce78b8469e2097e576ad5ed, type: 3}
+    ImpactEffectTime: 3
+    lastHit: {fileID: 0}
+    UseCustomHandPositions: 1
+    muzzle: {x: 0, y: 0.05, z: 0.7}
+    RightHand: {fileID: 3207036880898257022, guid: e5b9af22294241c4ab22d8917d1aced1, type: 3}
+    LeftHand: {fileID: -881903683776814954, guid: e5b9af22294241c4ab22d8917d1aced1, type: 3}
+    SingleHanded: 0
+    ActiveEffects: []
+    method: 0
+  GrenadeList: []
+  ItemList: []

@@ -6,28 +6,37 @@ public class HealthScript : MonoBehaviour
 {
 	public float StartHealth = 100;
 	public float RegenRate = 0;
-	[ReadOnly] public float CurrentHealth;
-	public Action NoHealthAction;
+	[ReadOnly] [SerializeField] private float currentHealth;
+	public Action noHealthAction;
+	public Action changeHealthAction;
 	private void Start()
 	{
-		CurrentHealth = StartHealth;
+		currentHealth = StartHealth;
 		StartCoroutine(UpdateHealth());
+	}
+	public void ChangeHealth(float amount)
+	{
+		if (changeHealthAction != null)
+		{
+			changeHealthAction.Invoke();
+		}
+		currentHealth += amount;
 	}
 	private IEnumerator UpdateHealth()
 	{
 		for (; ; )
 		{
 			if (RegenRate != 0)
-				CurrentHealth += RegenRate;
-			if (CurrentHealth <= 0)
+				currentHealth += RegenRate;
+			if (currentHealth <= 0)
 			{
-				if (NoHealthAction != null)
+				if (noHealthAction != null)
 				{
-					NoHealthAction.Invoke();
+					noHealthAction.Invoke();
 				}
 			}
-			if (CurrentHealth >= StartHealth)
-				CurrentHealth = StartHealth;
+			if (currentHealth >= StartHealth)
+				currentHealth = StartHealth;
 			yield return new WaitForSeconds(0.2f);
 		}
 	}

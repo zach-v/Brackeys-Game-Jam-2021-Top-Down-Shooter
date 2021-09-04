@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Profiling;
 using UnityEngine;
+using UnityEngine.UI;
 using static BiomeManager;
 
 public class PlayerManager : MonoBehaviour
 {
 	[Header("Manager Fields")]
 	[SerializeField] private PlayerMovement movement;
+	[SerializeField] private HealthScript healthScript;
 	[SerializeField] private AudioManager audioManager;
 	[SerializeField] private ItemManager weaponManager;
 	[SerializeField] private BiomeManager biomeManager;
@@ -29,6 +31,8 @@ public class PlayerManager : MonoBehaviour
 	[SerializeField] private FlexibleGridLayout GunTableGrid;
 	[SerializeField] private FlexibleGridLayout GrenadeTableGrid;
 	[SerializeField] private FlexibleGridLayout ItemsTableGrid;
+	[SerializeField] private Text currentWeaponText;
+	[SerializeField] private Slider weaponUsageSlider;
 	[Header("Other Readonlys")]
 	[SerializeField] private Biome currentBiome = Biome.Planes;
 	[ReadOnly] [SerializeField] private Biome previousBiome = Biome.Void;
@@ -41,6 +45,10 @@ public class PlayerManager : MonoBehaviour
 	}
 	void Awake()
 	{
+		// Set health actions
+		healthScript.noHealthAction = new System.Action(PlayerAtNoHealth);
+		healthScript.changeHealthAction = new System.Action(PlayerLostHealth);
+		// Remember gun point positions
 		GunPointOriginalPosition = GunPoint.position;
 		GunPoint2OriginalPosition = GunPoint2.position;
 		// Set current gun to first one in list
@@ -79,6 +87,7 @@ public class PlayerManager : MonoBehaviour
 	{
 		List<WeaponBase> allWeapons = new List<WeaponBase>(gunInventory);
 		allWeapons.AddRange(grenadeInventory.ToArray());
+		// For all weapons
 		foreach (WeaponBase weapon in allWeapons)
 		{
 			if (weapon.RecentlyUsed)
@@ -91,6 +100,8 @@ public class PlayerManager : MonoBehaviour
 				}
 			}
 		}
+		// Changing the Hud for the current Gun
+		weaponUsageSlider.value = 1 - (currentGun.TimeSinceUsed / currentGun.UsageRate);
 	}
 	private void CheckShooting()
 	{
@@ -140,7 +151,7 @@ public class PlayerManager : MonoBehaviour
 						{
 							if (hit.collider.gameObject.layer.Equals(currentGun.TargetLayer.MaskToLayer()))
 							{
-								hit.collider.gameObject.GetComponent<HealthScript>().CurrentHealth -= currentGun.Damage;
+								hit.collider.gameObject.GetComponent<HealthScript>().ChangeHealth(-currentGun.Damage);
 							}
 							if (currentGun.ImpactEffect != null)
 							{
@@ -194,7 +205,7 @@ public class PlayerManager : MonoBehaviour
 		currentGun = gunInventory[index];
 		itemInHand = Instantiate(currentGun.WeaponModel, GunPoint.position + currentGun.PositionOffset,
 			Quaternion.Euler(GunPoint.rotation.eulerAngles + currentGun.RotationOffset), transform);
-
+		// Set the hand IK positions
 		if (currentGun.SingleHanded)
 		{
 			GunPoint2.position = new Vector3(GunPoint.position.x, GunPoint.position.y - 0.1f, GunPoint.position.z);
@@ -203,6 +214,12 @@ public class PlayerManager : MonoBehaviour
 		{
 			GunPoint2.position = GunPoint2OriginalPosition;
 		}
+		// Set the Hud text
+		SetCurrentWeaponText(currentGun.Name);
+	}
+	private void SetCurrentWeaponText(string text)
+	{
+		currentWeaponText.text = text;
 	}
 	public bool AddItemToInventory<T>(T item) where T : ItemInterface
 	{
@@ -255,6 +272,14 @@ public class PlayerManager : MonoBehaviour
 			//currentBiome = biomeManager.GetBiomeAt(transform.position);
 			yield return new WaitForSeconds(1);
 		}
+	}
+	private void PlayerAtNoHealth()
+	{
+		Debug.Log("Player lost all health.");
+	}
+	private void PlayerLostHealth()
+	{
+		Debug.Log("Player took damge");
 	}
 	#endregion
 }

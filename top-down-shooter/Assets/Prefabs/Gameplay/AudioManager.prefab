@@ -1,0 +1,351 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6445429958833093412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6445429958833093402}
+  - component: {fileID: 6445429958833093403}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: GameController
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6445429958833093402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6445429958833093412}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6445429958833093403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6445429958833093412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 191875a23c120eb47b0063642ace7b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemSounds:
+  - name: pistol-1
+    clip: {fileID: 8300000, guid: 9bdee181a71250346b7d5471acc70f83, type: 3}
+    volume: 0.8
+    pitch: 0.7
+    loop: 0
+    audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 5
+    source: {fileID: 0}
+  - name: pistol-2
+    clip: {fileID: 8300000, guid: cd2fd5c55f27f5e4d9dfaef101821977, type: 3}
+    volume: 0.8
+    pitch: 0.85
+    loop: 0
+    audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 5
+    source: {fileID: 0}
+  - name: shotgun-1
+    clip: {fileID: 8300000, guid: 2e8bd9bb009158148a2b73ef65a71e4c, type: 3}
+    volume: 0.7
+    pitch: 0.85
+    loop: 0
+    audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 5
+    source: {fileID: 0}
+  - name: ak-1
+    clip: {fileID: 8300000, guid: 1aa760928403eed4eb9ecd4b04c46078, type: 3}
+    volume: 0.7
+    pitch: 0.8
+    loop: 0
+    audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 5
+    source: {fileID: 0}
+  - name: ak-2
+    clip: {fileID: 8300000, guid: 05380a5fc46e44343b7879c895f502bc, type: 3}
+    volume: 0.7
+    pitch: 0.8
+    loop: 0
+    audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 5
+    source: {fileID: 0}
+  - name: laser-1
+    clip: {fileID: 8300000, guid: 95eb9f106585d0744ba2c3ed006c5e6c, type: 3}
+    volume: 0.7
+    pitch: 1.2
+    loop: 0
+    audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 5
+    source: {fileID: 0}
+  - name: laser-2
+    clip: {fileID: 8300000, guid: c1077e69228a8be47a76915031e477a9, type: 3}
+    volume: 0.7
+    pitch: 1.2
+    loop: 0
+    audioMixer: {fileID: -6672323131675730434, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 5
+    source: {fileID: 0}
+  natureSounds: []
+  music:
+  - name: ambient-swamp
+    clip: {fileID: 8300000, guid: b928301a9678e5841b3cbfcb56a226d6, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    audioMixer: {fileID: -2554213761833168293, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: ambient-forest
+    clip: {fileID: 8300000, guid: 5b309f2f3f82bed4db2cb3840589ab52, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    audioMixer: {fileID: -2554213761833168293, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: ambient-hell
+    clip: {fileID: 8300000, guid: fa500d6a9158ae0478c77a46af742ad4, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    audioMixer: {fileID: -2554213761833168293, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  walkingSounds:
+  - name: Dirt_Jogging-1
+    clip: {fileID: 8300000, guid: 0335c353bb759d94a964672580b84904, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Dirt_Jogging-2
+    clip: {fileID: 8300000, guid: 194da6df2f686c54b97f682f2d8d2460, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Dirt_Jogging-3
+    clip: {fileID: 8300000, guid: 4e654e4ec0a578b47b90dec0c1f3b8a1, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Dirt_Jogging-4
+    clip: {fileID: 8300000, guid: f5b9e4f5afa3336479631e9b3477a862, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Dirt_Jogging-5
+    clip: {fileID: 8300000, guid: a2d9b360fef6027478a70cc21b552cb2, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Dirt_Running-1
+    clip: {fileID: 8300000, guid: 19021cb2484bde6438175ed5c915dcc7, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Dirt_Running-2
+    clip: {fileID: 8300000, guid: 5961eba2e48a74340b677f7b687f5859, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Dirt_Running-3
+    clip: {fileID: 8300000, guid: fdcf79b5da717fd4f92b11b4713c0663, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Dirt_Running-4
+    clip: {fileID: 8300000, guid: 5e8e3a99d227c274b87eff3d8de91582, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Dirt_Running-5
+    clip: {fileID: 8300000, guid: 9367935eb9b01914f892cb99e07dcefe, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Puddle_Running-1
+    clip: {fileID: 8300000, guid: f0d2a365a1e80ec419ce057e745250fd, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Puddle_Running-2
+    clip: {fileID: 8300000, guid: 6ad4d2d1b9330f9478010e14cee60cff, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Puddle_Running-3
+    clip: {fileID: 8300000, guid: d22f77221d4445e45a256723a4b50d0d, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Puddle_Running-4
+    clip: {fileID: 8300000, guid: 32b0717b03764d347b11f1e32a034175, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Puddle_Running-5
+    clip: {fileID: 8300000, guid: 2b3add8f56ffe1749b3393bc01c5980a, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Puddle_Walking-1
+    clip: {fileID: 8300000, guid: e212d718e156cdc41a9242cdf5406c36, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Puddle_Walking-2
+    clip: {fileID: 8300000, guid: 5c0451d17101d564b9e637320f1b0933, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Puddle_Walking-3
+    clip: {fileID: 8300000, guid: cf93bd469f27cde44a32a04972ad2b4f, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Puddle_Walking-4
+    clip: {fileID: 8300000, guid: 3902a39d6ad05a546a772fcb870abea9, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Puddle_Walking-5
+    clip: {fileID: 8300000, guid: 7110abd9a91e4274bb79850be66cbabd, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Sand_Boots_Running-1
+    clip: {fileID: 8300000, guid: a044d1ecc51737240bf8f9395459ea71, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Sand_Boots_Running-2
+    clip: {fileID: 8300000, guid: 24611ea65c7cfb54f8000f6f8d411b77, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Sand_Boots_Running-3
+    clip: {fileID: 8300000, guid: c3665932da2f0874c977fc5ff71892e3, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Sand_Boots_Running-4
+    clip: {fileID: 8300000, guid: 0ec20ddf5c2d1084ba4181597e1e310e, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Sand_Boots_Running-5
+    clip: {fileID: 8300000, guid: 493b9f48acb24a344b991d6e89ade94a, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  - name: Sand_Boots_Running-6
+    clip: {fileID: 8300000, guid: 57ffc43fcf3c3584a9d85a96ceb1afa2, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 4361007221562095958, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    type: 0
+    source: {fileID: 0}
+  mobSounds: []
+  normalVolume: {fileID: 24500006, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+  lowPass: {fileID: -7746596214534304524, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+  reverb: {fileID: 68490754482701386, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+  CurrentMusic:
+    name: 
+    clip: {fileID: 0}
+    volume: 90
+    pitch: 1
+    loop: 0
+    audioMixer: {fileID: 0}
+    type: 0
+    source: {fileID: 0}
+  CurrentState: 0
