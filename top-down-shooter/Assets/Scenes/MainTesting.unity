@@ -1721,23 +1721,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[0].Name
-      value: LaserPistol
-      objectReference: {fileID: 0}
-    - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
-      propertyPath: GunList.Array.data[1].Name
-      value: Pistol
-      objectReference: {fileID: 0}
-    - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
-      propertyPath: GunList.Array.data[2].Name
-      value: AK-47-Gold
-      objectReference: {fileID: 0}
-    - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
-      propertyPath: GunList.Array.data[3].Name
       value: LaserRifle
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
+      propertyPath: GunList.Array.data[1].Name
+      value: LaserPistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
+      propertyPath: GunList.Array.data[2].Name
+      value: Pistol
+      objectReference: {fileID: 0}
+    - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
+      propertyPath: GunList.Array.data[3].Name
+      value: AK-47-Gold
+      objectReference: {fileID: 0}
+    - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[0].Damage
-      value: 80
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[0].spread
@@ -1745,19 +1745,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[1].Damage
-      value: 5
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[1].spread
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[2].Damage
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
+      propertyPath: GunList.Array.data[2].spread
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[3].Damage
-      value: 50
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[3].spread
@@ -1766,10 +1770,10 @@ PrefabInstance:
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[0].LeftHand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 107932927474431466, guid: 3f06bcc6d3e4b754aa61bedb69d66ff1, type: 3}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[0].muzzle.z
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[1].LeftHand
@@ -1782,26 +1786,26 @@ PrefabInstance:
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[2].LeftHand
       value: 
-      objectReference: {fileID: -881903683776814954, guid: 649d93a9a77b378428d053aff9c4dbb1, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[2].muzzle.z
-      value: 0.75
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[3].LeftHand
       value: 
-      objectReference: {fileID: 107932927474431466, guid: 3f06bcc6d3e4b754aa61bedb69d66ff1, type: 3}
+      objectReference: {fileID: -881903683776814954, guid: 649d93a9a77b378428d053aff9c4dbb1, type: 3}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[3].muzzle.z
-      value: 0.7
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[0].RightHand
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 108924278338995610, guid: 3f06bcc6d3e4b754aa61bedb69d66ff1, type: 3}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[0].UsageRate
-      value: 1200
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[1].RightHand
@@ -1809,23 +1813,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[1].UsageRate
-      value: 150
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[2].RightHand
       value: 
-      objectReference: {fileID: 3207036880898257022, guid: 649d93a9a77b378428d053aff9c4dbb1, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[2].UsageRate
-      value: 90
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[3].RightHand
       value: 
-      objectReference: {fileID: 108924278338995610, guid: 3f06bcc6d3e4b754aa61bedb69d66ff1, type: 3}
+      objectReference: {fileID: 3207036880898257022, guid: 649d93a9a77b378428d053aff9c4dbb1, type: 3}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[3].UsageRate
-      value: 300
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[0].FireEffect
@@ -1833,12 +1837,12 @@ PrefabInstance:
       objectReference: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[0].SingleFire
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[1].FireEffect
       value: 
-      objectReference: {fileID: 1769621416249240, guid: 576051583fc1f8e419d415424746b5af, type: 3}
+      objectReference: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[1].SingleFire
       value: 1
@@ -1849,12 +1853,12 @@ PrefabInstance:
       objectReference: {fileID: 1769621416249240, guid: 576051583fc1f8e419d415424746b5af, type: 3}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[2].SingleFire
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[3].FireEffect
       value: 
-      objectReference: {fileID: 1198663731479534, guid: b46264f9e12caed4cb53e7c2ad64aa54, type: 3}
+      objectReference: {fileID: 1769621416249240, guid: 576051583fc1f8e419d415424746b5af, type: 3}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[3].SingleFire
       value: 0
@@ -1862,22 +1866,22 @@ PrefabInstance:
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[0].WeaponModel
       value: 
-      objectReference: {fileID: 919132149155446097, guid: 3753b585bb117b24bbfaf8718fc2eb4c, type: 3}
+      objectReference: {fileID: 919132149155446097, guid: 3f06bcc6d3e4b754aa61bedb69d66ff1, type: 3}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[1].WeaponModel
       value: 
-      objectReference: {fileID: 919132149155446097, guid: ca36b3f37bddcbc4986b1687d915693d, type: 3}
+      objectReference: {fileID: 919132149155446097, guid: 3753b585bb117b24bbfaf8718fc2eb4c, type: 3}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[2].WeaponModel
       value: 
-      objectReference: {fileID: 919132149155446097, guid: 649d93a9a77b378428d053aff9c4dbb1, type: 3}
+      objectReference: {fileID: 919132149155446097, guid: ca36b3f37bddcbc4986b1687d915693d, type: 3}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[3].WeaponModel
       value: 
-      objectReference: {fileID: 919132149155446097, guid: 3f06bcc6d3e4b754aa61bedb69d66ff1, type: 3}
+      objectReference: {fileID: 919132149155446097, guid: 649d93a9a77b378428d053aff9c4dbb1, type: 3}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[0].SingleHanded
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[0].TracerEffect
@@ -1890,10 +1894,10 @@ PrefabInstance:
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[1].TracerEffect
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1062685050423962, guid: 3536bfd57b96d984896616db8a104ad4, type: 3}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[2].SingleHanded
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[2].TracerEffect
@@ -1906,22 +1910,22 @@ PrefabInstance:
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[3].TracerEffect
       value: 
-      objectReference: {fileID: 1062685050423962, guid: 3536bfd57b96d984896616db8a104ad4, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[0].FireSoundName
-      value: laser-1
+      value: laser-2
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[1].FireSoundName
-      value: pistol-1
+      value: laser-1
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[2].FireSoundName
-      value: ak-1
+      value: pistol-1
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[3].FireSoundName
-      value: laser-2
+      value: ak-1
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[0].DropPercentage
@@ -1933,11 +1937,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[1].DropPercentage
-      value: 1
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[1].FireEffectTime
-      value: 3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
+      propertyPath: GunList.Array.data[2].DropPercentage
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[2].FireEffectTime
@@ -1949,7 +1957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[3].FireEffectTime
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[0].ImpactEffectTime
@@ -1957,15 +1965,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[0].PositionOffset.y
-      value: 0
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[0].PositionOffset.z
-      value: 0
+      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[1].ImpactEffectTime
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[1].PositionOffset.y
@@ -1981,15 +1989,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[2].PositionOffset.y
-      value: 0.05
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[2].PositionOffset.z
-      value: 0.22
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[3].ImpactEffectTime
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[3].PositionOffset.y
@@ -2001,7 +2009,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[0].UseCustomHandPositions
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[1].UseCustomHandPositions
@@ -2013,7 +2021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560027, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: GunList.Array.data[3].UseCustomHandPositions
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 88505310027560028, guid: 2065814623aca7840a6b7ad578382020, type: 3}
       propertyPath: m_RootOrder
