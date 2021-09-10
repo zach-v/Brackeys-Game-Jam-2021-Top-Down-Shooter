@@ -35,6 +35,7 @@ public class PlayerManager : MonoBehaviour
 	[SerializeField] private Slider weaponUsageSlider;
 	[Header("Other Readonlys")]
 	[SerializeField] private Biome currentBiome = Biome.Planes;
+	[ReadOnly] [SerializeField] private float currentPositionValue = 0;
 	[ReadOnly] [SerializeField] private Biome previousBiome = Biome.Void;
 	[ReadOnly] [SerializeField] private bool continueToFire = true;
 
@@ -251,20 +252,22 @@ public class PlayerManager : MonoBehaviour
 	{
 		for (; ; )
 		{
+			(currentPositionValue, currentBiome) = biomeManager.GetBiomeAt(transform.position);
 			if (previousBiome != currentBiome)
 			{
 				switch (currentBiome)
 				{
 					case Biome.Planes:
+						audioManager.Play("ambient-field-of-dreams", Sound.SoundType.Music);
 						break;
 					case Biome.Swamp:
-						audioManager.Play("ambient-swamp");
+						audioManager.Play("ambient-swamp", Sound.SoundType.Music);
 						break;
 					case Biome.Forest:
-						audioManager.Play("ambient-forest");
+						audioManager.Play("ambient-forest", Sound.SoundType.Music);
 						break;
 					case Biome.Hell:
-						audioManager.Play("ambient-hell");
+						audioManager.Play("ambient-hell", Sound.SoundType.Music);
 						break;
 				}
 				previousBiome = currentBiome;
