@@ -252,6 +252,7 @@ public class PlayerManager : MonoBehaviour
 	{
 		for (; ; )
 		{
+
 			(currentPositionValue, currentBiome) = biomeManager.GetBiomeAt(transform.position);
 			if (previousBiome != currentBiome)
 			{
