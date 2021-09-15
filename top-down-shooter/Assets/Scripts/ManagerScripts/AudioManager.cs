@@ -8,7 +8,9 @@ using System.Collections.Generic;
 public class AudioManager : MonoBehaviour
 {
 	public Sound[] itemSounds;
-	public Sound[] natureSounds;
+	public Sound[] weatherSounds;
+	public Sound[] ambientSounds;
+	public Sound[] animalSounds;
 	public Sound[] music;
 	public Sound[] walkingSounds;
 	public Sound[] mobSounds;
@@ -22,7 +24,7 @@ public class AudioManager : MonoBehaviour
 	{
 		// Add all arrays to a single list
 		List<Sound> all = new List<Sound>(itemSounds);
-		all.AddRange(natureSounds);
+		all.AddRange(weatherSounds);
 		all.AddRange(music);
 		all.AddRange(walkingSounds);
 		all.AddRange(mobSounds);
@@ -126,22 +128,31 @@ public class AudioManager : MonoBehaviour
 			{
 				case SoundType.Mob:
 					s = Array.Find(mobSounds, sound => sound.name == name);
-					break;
+					goto default;
 				case SoundType.Item:
 					s = Array.Find(itemSounds, sound => sound.name == name);
-					break;
+					goto default;
 				case SoundType.Walking:
 					s = Array.Find(walkingSounds, sound => sound.name == name);
-					break;
+					goto default;
 				case SoundType.Music:
 					s = Array.Find(music, sound => sound.name == name);
-					break;
-				case SoundType.Ambient:
-					s = Array.Find(natureSounds, sound => sound.name == name);
-					break;
+					goto default;
+				case SoundType.Weather | SoundType.Wind:
+					s = Array.Find(weatherSounds, sound => sound.name == name);
+					goto default;
+				case SoundType.Animal:
+					s = Array.Find(animalSounds, sound => sound.name == name);
+					goto default;
 				default:
+					if (s != null)
+						break;
 					List<Sound> all = new List<Sound>(itemSounds);
-					all.AddRange(natureSounds);
+					all.AddRange(weatherSounds);
+					all.AddRange(ambientSounds);
+					all.AddRange(animalSounds);
+					all.AddRange(walkingSounds);
+					all.AddRange(mobSounds);
 					all.AddRange(music);
 					s = Array.Find(all.ToArray(), sound => sound.name == name);
 					break;

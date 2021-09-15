@@ -2846,6 +2846,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
       propertyPath: music.Array.data[0].type
       value: 4
       objectReference: {fileID: 0}
@@ -2874,6 +2878,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
       propertyPath: music.Array.data[3].pitch
       value: 1
       objectReference: {fileID: 0}
@@ -2885,6 +2893,70 @@ PrefabInstance:
       propertyPath: music.Array.data[3].audioMixer
       value: 
       objectReference: {fileID: -2554213761833168293, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 8266abafe6a49e848a3bd03898d59dcd, type: 3}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[0].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[0].name
+      value: ambient-cave-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[0].type
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9364721d07067294cb65e3f3687f80a8, type: 3}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[1].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[1].name
+      value: ambient-cave-2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[1].type
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 32a78b2b3ba4f444797e9e58f5dc8bf0, type: 3}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[2].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[2].name
+      value: ambient-end
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[2].type
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f6e4d359df4d3044fb878c219a40dce1, type: 3}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[3].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[3].name
+      value: ambient-nether
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[3].type
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
       propertyPath: walkingSounds.Array.data[0].type
       value: 2
@@ -2924,6 +2996,150 @@ PrefabInstance:
     - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
       propertyPath: walkingSounds.Array.data[9].type
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4d54628e74aad9b4b82c345c9e7a7128, type: 3}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[0].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[0].name
+      value: light-rain
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[0].type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f0a199f270e16d446812f9d6a54d4c2a, type: 3}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[1].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[1].name
+      value: light-storm
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[1].type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ec9c50df978c5104796812f177ccf806, type: 3}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[2].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[2].name
+      value: heavy-storm
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[2].type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 596362ed194d86f4eba985f615f01bcc, type: 3}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[3].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[3].name
+      value: heavy-wind
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[3].type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2869c5d33108dc641a6b0a7c7ea1ccdc, type: 3}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[4].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[4].name
+      value: howling-wind
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[4].type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[5].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4900839a594be284f99d49b48890f386, type: 3}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[5].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[5].name
+      value: light-wind
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[5].type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[6].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3254a2cf0b3e35d48a42f5f8079fddd1, type: 3}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[6].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[6].name
+      value: mesa-wind
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[6].type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[7].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 22edb6ad403c0c5458cbe30944dc31cd, type: 3}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[7].loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[7].name
+      value: wind
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[7].type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[0].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[1].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[2].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[3].pitch
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
       propertyPath: walkingSounds.Array.data[10].type
@@ -2989,6 +3205,134 @@ PrefabInstance:
       propertyPath: walkingSounds.Array.data[25].type
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[0].pitch
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[1].pitch
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[2].pitch
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[3].pitch
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[4].pitch
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[5].pitch
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[6].pitch
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[7].pitch
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[0].volume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[1].volume
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[2].volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[3].volume
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[0].volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[1].volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[2].volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[3].volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[4].volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[5].volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[6].volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[7].volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[0].audioMixer
+      value: 
+      objectReference: {fileID: -5658005364597312058, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[1].audioMixer
+      value: 
+      objectReference: {fileID: -5658005364597312058, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[2].audioMixer
+      value: 
+      objectReference: {fileID: -5658005364597312058, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: ambientSounds.Array.data[3].audioMixer
+      value: 
+      objectReference: {fileID: -5658005364597312058, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[0].audioMixer
+      value: 
+      objectReference: {fileID: 2024030247925253855, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[1].audioMixer
+      value: 
+      objectReference: {fileID: 2024030247925253855, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[2].audioMixer
+      value: 
+      objectReference: {fileID: 2024030247925253855, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[3].audioMixer
+      value: 
+      objectReference: {fileID: 2024030247925253855, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[4].audioMixer
+      value: 
+      objectReference: {fileID: 2024030247925253855, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[5].audioMixer
+      value: 
+      objectReference: {fileID: 2024030247925253855, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[6].audioMixer
+      value: 
+      objectReference: {fileID: 2024030247925253855, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: weatherSounds.Array.data[7].audioMixer
+      value: 
+      objectReference: {fileID: 2024030247925253855, guid: 36f0790bcd5aa1645955a5571b7beaad, type: 2}
     - target: {fileID: 6445429958833093412, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
       propertyPath: m_Name
       value: AudioManager
