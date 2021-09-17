@@ -14,17 +14,22 @@ public class AudioManager : MonoBehaviour
 	public Sound[] music;
 	public Sound[] walkingSounds;
 	public Sound[] mobSounds;
-	public AudioMixerSnapshot normalVolume;
-	public AudioMixerSnapshot lowPass;
-	public AudioMixerSnapshot reverb;
-	[ReadOnly] public Sound CurrentMusic;
-	public FilterState CurrentState = FilterState.Normal;
+	[SerializeField] private AudioMixerSnapshot normalVolume;
+	[SerializeField] private AudioMixerSnapshot lowPass;
+	[SerializeField] private AudioMixerSnapshot reverb;
+	[SerializeField] private float musicFadeSpeed = 0.1f;
+	[ReadOnly] [SerializeField] private Sound CurrentMusic;
+	[SerializeField] private float ambienceFadeSpeed = 0.2f;
+	[ReadOnly] [SerializeField] private Sound CurrentAmbience;
+	[SerializeField] private FilterState CurrentState = FilterState.Normal;
 	public enum FilterState { Normal, LowPass, Reverb }
 	void Awake()
 	{
 		// Add all arrays to a single list
 		List<Sound> all = new List<Sound>(itemSounds);
 		all.AddRange(weatherSounds);
+		all.AddRange(ambientSounds);
+		all.AddRange(animalSounds);
 		all.AddRange(music);
 		all.AddRange(walkingSounds);
 		all.AddRange(mobSounds);
@@ -47,16 +52,23 @@ public class AudioManager : MonoBehaviour
 	/// </summary>
 	/// <param name="name"></param>
 	/// <param name="type"></param>
-	public void Play(string name, SoundType type = SoundType.Default, float pitchVariation = 0, bool oneShot = true)
+	public void Play(string name, SoundType type = SoundType.Default, float pitchVariation = 0, bool oneShot = false)
 	{
 		try
 		{
 			Sound s = Find(name, type);
-			if (s.type == SoundType.Music)
+			switch (s.type)
 			{
-				Stop(CurrentMusic.name);
-				CurrentMusic = s;
+				case SoundType.Music:
+					Stop(CurrentMusic);
+					CurrentMusic = s;
+					break;
+				case SoundType.Ambient:
+					Stop(CurrentAmbience);
+					CurrentAmbience = s;
+					break;
 			}
+
 			s.source.pitch = UnityEngine.Random.Range(-pitchVariation + s.pitch, pitchVariation + s.pitch);
 			if (oneShot)
 				s.source.PlayOneShot(s.clip);
@@ -73,7 +85,16 @@ public class AudioManager : MonoBehaviour
 		for (float i = sound.volume; i >= 0; i -= 0.1f)
 		{
 			sound.source.volume = i;
-			yield return new WaitForSeconds(0.1f);
+			switch (sound.type)
+			{
+				case SoundType.Music:
+					yield return new WaitForSeconds(musicFadeSpeed);
+					break;
+				case SoundType.Ambient:
+					yield return new WaitForSeconds(ambienceFadeSpeed);
+					break;
+			}
+
 		}
 		sound.source.Stop();
 	}
@@ -81,37 +102,56 @@ public class AudioManager : MonoBehaviour
 	/// Play a sound by name and type at a certain point.
 	/// </summary>
 	/// <param name="name"></param>
-	/// <param name="point"></param>
+	/// <param name="position"></param>
 	/// <param name="type"></param>
-	public void PlayAtPoint(string name, Vector3 point, SoundType type = SoundType.Default)
+	public void PlayAtPosition(string name, Vector3 position, SoundType type = SoundType.Default)
 	{
 		try
 		{
 			Sound s = Find(name, type);
 			if (s.type != SoundType.Music)
 			{
-				AudioSource.PlayClipAtPoint(s.clip, point);
+				AudioSource.PlayClipAtPoint(s.clip, position);
 			}
 		}
 		catch (Exception e)
 		{
-			Debug.Log($"Unable to play sound: {name}, at point {point}, because {e.Message}");
+			Debug.Log($"Unable to play sound: {name}, at point {position}, because {e.Message}");
 		}
 	}
-	public void Stop(string name, SoundType type = SoundType.Default)
+	/// <summary>
+	/// Stops a sound directly at the source. Only use if you have the exact sound...
+	/// </summary>
+	/// <param name="s"></param>
+	public void Stop(Sound s)
 	{
 		try
 		{
-			Sound s = Find(name, type);
-			if (type == SoundType.Music)
-				StartCoroutine(FadeAudio(s));
-			else
-				s.source.Stop();
+			switch (s.type)
+			{
+				case SoundType.Music:
+				case SoundType.Ambient:
+					StartCoroutine(FadeAudio(s));
+					break;
+				default:
+					s.source.Stop();
+					break;
+			}
 		}
 		catch (Exception e)
 		{
-			Debug.Log($"Unable to stop sound: {name}, because {e.Message}");
+			Debug.Log($"Unable to stop sound: {s.name}, because {e.Message}");
 		}
+	}
+	/// <summary>
+	/// Stops a sound by looking it up through the entire sound directory, or by type.
+	/// </summary>
+	/// <param name="name"></param>
+	/// <param name="type"></param>
+	public void Stop(string name, SoundType type = SoundType.Default)
+	{
+		Sound s = Find(name, type);
+		Stop(s);
 	}
 	/// <summary>
 	/// Internal finder method based on type. If default type given, it will make a list of all sounds.

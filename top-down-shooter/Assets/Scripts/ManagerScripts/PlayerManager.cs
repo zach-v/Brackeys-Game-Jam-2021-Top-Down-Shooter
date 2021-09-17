@@ -9,6 +9,7 @@ using static BiomeManager;
 
 public class PlayerManager : MonoBehaviour
 {
+	#region Variables
 	[Header("Manager Fields")]
 	[SerializeField] private PlayerMovement movement;
 	[SerializeField] private HealthScript healthScript;
@@ -38,7 +39,10 @@ public class PlayerManager : MonoBehaviour
 	[ReadOnly] [SerializeField] private float currentPositionValue = 0;
 	[ReadOnly] [SerializeField] private Biome previousBiome = Biome.Void;
 	[ReadOnly] [SerializeField] private bool continueToFire = true;
-
+	// Audio variables
+	private bool playNewAmbience = false;
+	private int cicadas = 0;
+	#endregion
 	public PlayerManager()
 	{
 		gunInventory = new List<Gun>();
@@ -60,6 +64,7 @@ public class PlayerManager : MonoBehaviour
 	{
 		StartCoroutine(CheckWeaponBulletList());
 		StartCoroutine(CheckBiome());
+		StartCoroutine(HandleAmbienceAudio());
 	}
 	#region Update Methods
 	private void Update()
@@ -173,7 +178,7 @@ public class PlayerManager : MonoBehaviour
 					}
 				}
 				// Play fire sound
-				audioManager.Play(currentGun.FireSoundName, Sound.SoundType.Item, 0.075f);
+				audioManager.Play(currentGun.FireSoundName, Sound.SoundType.Item, 0.075f, true);
 				// If single fire, toggle continue fire
 				if (currentGun.SingleFire)
 				{
@@ -216,11 +221,7 @@ public class PlayerManager : MonoBehaviour
 			GunPoint2.position = GunPoint2OriginalPosition;
 		}
 		// Set the Hud text
-		SetCurrentWeaponText(currentGun.Name);
-	}
-	private void SetCurrentWeaponText(string text)
-	{
-		currentWeaponText.text = text;
+		currentWeaponText.text = currentGun.Name;
 	}
 	public bool AddItemToInventory<T>(T item) where T : ItemInterface
 	{
@@ -242,7 +243,7 @@ public class PlayerManager : MonoBehaviour
 	#region Coroutines
 	private IEnumerator CheckWeaponBulletList()
 	{
-		for (; ; )
+		while (true)
 		{
 			currentGun.ActiveEffects.RemoveAll(bullet => bullet == null);
 			yield return new WaitForSeconds(1);
@@ -250,16 +251,16 @@ public class PlayerManager : MonoBehaviour
 	}
 	private IEnumerator CheckBiome()
 	{
-		for (; ; )
+		while (true)
 		{
-
 			(currentPositionValue, currentBiome) = biomeManager.GetBiomeAt(transform.position);
 			if (previousBiome != currentBiome)
 			{
+				playNewAmbience = true;
 				switch (currentBiome)
 				{
 					case Biome.Planes:
-						audioManager.Play("ambient-field-of-dreams", Sound.SoundType.Music);
+						audioManager.Play("ambient-plane", Sound.SoundType.Music);
 						break;
 					case Biome.Swamp:
 						audioManager.Play("ambient-swamp", Sound.SoundType.Music);
@@ -273,10 +274,35 @@ public class PlayerManager : MonoBehaviour
 				}
 				previousBiome = currentBiome;
 			}
-			//currentBiome = biomeManager.GetBiomeAt(transform.position);
 			yield return new WaitForSeconds(1);
 		}
 	}
+	private IEnumerator HandleAmbienceAudio()
+	{
+		foreach (Sound s in audioManager.ambientSounds)
+		{
+			if (s.name.Contains("cicadas-"))
+			{
+				cicadas++;
+			}
+		}
+		while (true)
+		{
+			if (playNewAmbience)
+			{
+				switch (currentBiome)
+				{
+					case Biome.Planes:
+						audioManager.Play("cicadas-" + Random.Range(1, cicadas + 1), Sound.SoundType.Ambient);
+						break;
+				}
+				playNewAmbience = false;
+			}
+			yield return new WaitForSeconds(1);
+		}
+	}
+	#endregion
+	#region Invoke Methods
 	private void PlayerAtNoHealth()
 	{
 		Debug.Log("Player lost all health.");

@@ -50,5 +50,9 @@ namespace Assets.Scripts.Components
 		{
 			return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
 		}
+		public static T RandomPick<T>(params T[] ts)
+		{
+			return ts[UnityEngine.Random.Range(0, ts.Length)];
+		}
 	}
 }

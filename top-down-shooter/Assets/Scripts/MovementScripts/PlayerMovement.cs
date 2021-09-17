@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 	private void Awake()
 	{
 		// Populate random sound list
-		foreach (Sound s in audioManager.itemSounds)
+		foreach (Sound s in audioManager.walkingSounds)
 		{
 			if (s.name.Contains("Dirt_Jogging-"))
 			{
@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (currentTimeToSound >= TimeToStepSoundJog)
 		{
-			audioManager.Play("Dirt_Jogging-" + Mathf.RoundToInt(Random.Range(1, numberOfJogSounds)), Sound.SoundType.Walking);
+			audioManager.Play("Dirt_Jogging-" + Random.Range(1, numberOfJogSounds+1), Sound.SoundType.Walking);
 			currentTimeToSound = 0;
 		}
 	}
