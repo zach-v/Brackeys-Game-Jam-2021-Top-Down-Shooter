@@ -4,7 +4,7 @@ using UnityEngine;
 [System.Serializable]
 public class Sound
 {
-	public enum SoundType { Default, Mob, Walking, Weather, Music, Item, Wind, Suspense, Animal }
+	public enum SoundType { Default, Mob, Walking, Weather, Music, Item, Wind, Ambient, Animal }
 	public string name;
 	public AudioClip clip;
 

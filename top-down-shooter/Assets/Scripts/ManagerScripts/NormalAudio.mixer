@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!243 &-9108004869847621478
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Animals
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 54bc4d16ba5be9d4e947c863f003dff8
+  m_Children: []
+  m_Volume: 20439a145792da844857b97acde0455c
+  m_Pitch: e3186dff4de91f04c8f866ecc529a2a0
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -4908413316627143851}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &-8842668384342401337
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -112,6 +131,20 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-4908413316627143851
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 48076e6d80395314fa5fd8469309a50e
+  m_EffectName: Attenuation
+  m_MixLevel: 744af5d113102794d882f5040d58a1c9
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-4590890135632613041
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -174,7 +207,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AmbientMusic
+  m_Name: Music
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 896a1371df49b634bb5fc09e3fa80f7b
   m_Children: []
@@ -214,6 +247,7 @@ AudioMixerController:
     - 896a1371df49b634bb5fc09e3fa80f7b
     - 95b5cf4ea6f91874fbd43c8ee82db358
     - 486383fa914b35c4e9399734caffc3a1
+    - 54bc4d16ba5be9d4e947c863f003dff8
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -228,11 +262,12 @@ AudioMixerGroupController:
   m_GroupID: 8066f87a0b9b10742afef68edd7974c7
   m_Children:
   - {fileID: 2024030247925253855}
+  - {fileID: -9108004869847621478}
   - {fileID: -5658005364597312058}
   - {fileID: -6672323131675730434}
   - {fileID: 4440007728295644817}
-  - {fileID: -2554213761833168293}
   - {fileID: 4361007221562095958}
+  - {fileID: -2554213761833168293}
   m_Volume: 37ecd6a9f39dc0647907242f172460b0
   m_Pitch: e542f110674151f4d90f537b641f0ba3
   m_Send: 00000000000000000000000000000000
