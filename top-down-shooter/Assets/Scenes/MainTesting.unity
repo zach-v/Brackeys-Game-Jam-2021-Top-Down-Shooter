@@ -2890,6 +2890,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
+      propertyPath: music.Array.data[0].volume
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
       propertyPath: music.Array.data[3].volume
       value: 0.6
       objectReference: {fileID: 0}
@@ -4183,11 +4187,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
       propertyPath: ambientSounds.Array.data[17].volume
-      value: 0.6
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
       propertyPath: ambientSounds.Array.data[18].volume
-      value: 0.6
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6445429958833093403, guid: 2200bdc83321d3e4aa6e9ac89c72c72a, type: 3}
       propertyPath: animalSounds.Array.data[0].audioMixer

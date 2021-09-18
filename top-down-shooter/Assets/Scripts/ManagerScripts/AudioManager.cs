@@ -18,9 +18,7 @@ public class AudioManager : MonoBehaviour
 	[SerializeField] private AudioMixerSnapshot lowPass;
 	[SerializeField] private AudioMixerSnapshot reverb;
 	[SerializeField] private float musicFadeSpeed = 0.1f;
-	[ReadOnly] [SerializeField] private Sound CurrentMusic;
 	[SerializeField] private float ambienceFadeSpeed = 0.2f;
-	[ReadOnly] [SerializeField] private Sound CurrentAmbience;
 	[SerializeField] private FilterState CurrentState = FilterState.Normal;
 	public enum FilterState { Normal, LowPass, Reverb }
 	void Awake()
@@ -44,41 +42,35 @@ public class AudioManager : MonoBehaviour
 			s.source.loop = s.loop;
 			s.source.outputAudioMixerGroup = s.audioMixer;
 		}
-		// Set current music
-		CurrentMusic = Array.Find(music, sound => sound.type == SoundType.Music);
 	}
 	/// <summary>
 	/// Plays a sound by name. Faster processing wise to give it a type too.
 	/// </summary>
 	/// <param name="name"></param>
 	/// <param name="type"></param>
-	public void Play(string name, SoundType type = SoundType.Default, float pitchVariation = 0, bool oneShot = false)
+	public Sound Play(string name, SoundType type = SoundType.Default, float pitchVariation = 0, bool oneShot = false)
+	{
+		Sound s = Find(name, type);
+		return Play(s, pitchVariation, oneShot);
+	}
+	public Sound Play(Sound s, float pitchVariation = 0, bool oneShot = false)
 	{
 		try
 		{
-			Sound s = Find(name, type);
-			switch (s.type)
-			{
-				case SoundType.Music:
-					Stop(CurrentMusic);
-					CurrentMusic = s;
-					break;
-				case SoundType.Ambient:
-					Stop(CurrentAmbience);
-					CurrentAmbience = s;
-					break;
-			}
-
+			// Handle pitch variation
 			s.source.pitch = UnityEngine.Random.Range(-pitchVariation + s.pitch, pitchVariation + s.pitch);
+			// Toggle playing for non-overlapping sound, or overlapping
 			if (oneShot)
 				s.source.PlayOneShot(s.clip);
 			else
 				s.source.Play();
+			return s;
 		}
 		catch (Exception e)
 		{
 			Debug.Log($"Unable to play sound: {name}, because {e.Message}");
 		}
+		return null;
 	}
 	private IEnumerator FadeAudio(Sound sound)
 	{
@@ -97,6 +89,7 @@ public class AudioManager : MonoBehaviour
 
 		}
 		sound.source.Stop();
+		sound.source.volume = sound.volume;
 	}
 	/// <summary>
 	/// Play a sound by name and type at a certain point.
@@ -159,7 +152,7 @@ public class AudioManager : MonoBehaviour
 	/// <param name="name"></param>
 	/// <param name="type"></param>
 	/// <returns></returns>
-	private Sound Find(string name, SoundType type = SoundType.Default)
+	public Sound Find(string name, SoundType type = SoundType.Default)
 	{
 		try
 		{

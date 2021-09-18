@@ -40,8 +40,10 @@ public class PlayerManager : MonoBehaviour
 	[ReadOnly] [SerializeField] private Biome previousBiome = Biome.Void;
 	[ReadOnly] [SerializeField] private bool continueToFire = true;
 	// Audio variables
+	[ReadOnly] [SerializeField] private Sound CurrentMusic;
+	[ReadOnly] [SerializeField] private Sound[] CurrentAmbience;
 	private bool playNewAmbience = false;
-	private int cicadas = 0;
+	private int frogSoundCount = 0;
 	#endregion
 	public PlayerManager()
 	{
@@ -256,20 +258,23 @@ public class PlayerManager : MonoBehaviour
 			(currentPositionValue, currentBiome) = biomeManager.GetBiomeAt(transform.position);
 			if (previousBiome != currentBiome)
 			{
+				// Stop the current music
+				audioManager.Stop(CurrentMusic);
 				playNewAmbience = true;
+				// Switch between music tracks
 				switch (currentBiome)
 				{
 					case Biome.Planes:
-						audioManager.Play("ambient-plane", Sound.SoundType.Music);
+						CurrentMusic = audioManager.Play("ambient-plane", Sound.SoundType.Music);
 						break;
 					case Biome.Swamp:
-						audioManager.Play("ambient-swamp", Sound.SoundType.Music);
+						CurrentMusic = audioManager.Play("ambient-swamp", Sound.SoundType.Music);
 						break;
 					case Biome.Forest:
-						audioManager.Play("ambient-forest", Sound.SoundType.Music);
+						CurrentMusic = audioManager.Play("ambient-forest", Sound.SoundType.Music);
 						break;
 					case Biome.Hell:
-						audioManager.Play("ambient-hell", Sound.SoundType.Music);
+						CurrentMusic = audioManager.Play("ambient-hell", Sound.SoundType.Music);
 						break;
 				}
 				previousBiome = currentBiome;
@@ -279,21 +284,42 @@ public class PlayerManager : MonoBehaviour
 	}
 	private IEnumerator HandleAmbienceAudio()
 	{
+		CurrentMusic = audioManager.music.FirstOrDefault();
+		CurrentAmbience = new Sound[] { };
 		foreach (Sound s in audioManager.ambientSounds)
 		{
-			if (s.name.Contains("cicadas-"))
+			if (s.name.Contains("frog-"))
 			{
-				cicadas++;
+				frogSoundCount++;
 			}
 		}
 		while (true)
 		{
 			if (playNewAmbience)
 			{
+				// Stop all previous ambient sounds
+				foreach (Sound s in CurrentAmbience)
+				{
+					audioManager.Stop(s);
+				}
+				// Play new sounds based on biome
 				switch (currentBiome)
 				{
 					case Biome.Planes:
-						audioManager.Play("cicadas-" + Random.Range(1, cicadas + 1), Sound.SoundType.Ambient);
+						CurrentAmbience = new Sound[] {
+							audioManager.Play("cricket-" + Extensions.RandomPick(new int[] { 1, 2, 3, 8 }), Sound.SoundType.Ambient)
+						};
+						break;
+					case Biome.Forest:
+						CurrentAmbience = new Sound[] {
+							audioManager.Play("cricket-" + Extensions.RandomPick(new int[] { 4, 5, 6, 9 }), Sound.SoundType.Ambient)
+						};
+						break;
+					case Biome.Swamp:
+						CurrentAmbience = new Sound[] {
+							audioManager.Play("frog-" + Random.Range(1, frogSoundCount), Sound.SoundType.Ambient),
+							audioManager.Play("cricket-7", Sound.SoundType.Ambient)
+						};
 						break;
 				}
 				playNewAmbience = false;
