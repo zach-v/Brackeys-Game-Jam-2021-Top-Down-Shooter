@@ -21,12 +21,19 @@ public class EnvironmentGenerationManager : MonoBehaviour
 	public float pAmplitude = 1f;
 	public float pScale = 1f;
 	public Vector2 pOffset;
+	[Header("Worley Noise")]
+	public float wFrequency = 0.5f;
+	public float wAmplitude = 1f;
+	public float wScale = 1f;
+	public Vector2 wOffset;
 	// Private variables
 	private Renderer groundRenderer;
 	private PerlinNoise pNoise;
+	private WorleyNoise wNoise;
 	void Awake()
 	{
 		pNoise = new PerlinNoise(GlobalVariables.seed, pFrequency, pAmplitude);
+		wNoise = new WorleyNoise(GlobalVariables.seed, wFrequency, wAmplitude);
 	}
 	void Start()
 	{
@@ -81,9 +88,5 @@ public class EnvironmentGenerationManager : MonoBehaviour
 				return Color.black;
 		}
 		return Color.clear;
-	}
-	void Update()
-	{
-
 	}
 }

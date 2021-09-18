@@ -2413,8 +2413,12 @@ PrefabInstance:
       value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 1065842744567185345, guid: ffdfb1f77edf6294ca854bb2dea26a69, type: 3}
+      propertyPath: hellThresh
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065842744567185345, guid: ffdfb1f77edf6294ca854bb2dea26a69, type: 3}
       propertyPath: pAmplitude
-      value: 1.1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1065842744567185345, guid: ffdfb1f77edf6294ca854bb2dea26a69, type: 3}
       propertyPath: pFrequency
@@ -2429,8 +2433,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1231300122}
     - target: {fileID: 1065842744567185345, guid: ffdfb1f77edf6294ca854bb2dea26a69, type: 3}
+      propertyPath: swampThresh
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065842744567185345, guid: ffdfb1f77edf6294ca854bb2dea26a69, type: 3}
+      propertyPath: forestThresh
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065842744567185345, guid: ffdfb1f77edf6294ca854bb2dea26a69, type: 3}
       propertyPath: gridDrawSize
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1065842744567185345, guid: ffdfb1f77edf6294ca854bb2dea26a69, type: 3}
+      propertyPath: planesThresh
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1065842744567185345, guid: ffdfb1f77edf6294ca854bb2dea26a69, type: 3}
       propertyPath: quickRefresh

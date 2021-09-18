@@ -15,10 +15,15 @@ public class BiomeManager : MonoBehaviour
 	public GameObject groundPlane;
 	[ReadOnly] public Vector2Int textureSize;
 	[Header("Simplex Noise")]
-	public float pFrequency = 2f;
-	public float pAmplitude = 1f;
+	public float pFrequency = 5f;
+	public float pAmplitude = 2f;
 	public float pScale = 1f;
 	public Vector2 pOffset;
+	[Header("Biome Thresholds")]
+	public float hellThresh = 1.3f;
+	public float forestThresh = 0.3f;
+	public float planesThresh = -1f;
+	public float swampThresh = -2f;
 	[Header("Other variables")]
 	public float biomeVariation = 1;
 	[ReadOnly] [SerializeField] private float maxNoiseValue = float.MinValue;
@@ -50,13 +55,13 @@ public class BiomeManager : MonoBehaviour
 		// Lerp from position magnitude to noise values
 		float lerpValue = Mathf.Lerp(0, noiseSample, position.magnitude.Map(0, spawnSafeRadius * 2, 0, 1));
 		// Determine biome
-		if (lerpValue > 0.75f)
+		if (lerpValue > hellThresh)
 			return (lerpValue, Biome.Hell);
-		if (lerpValue > 0.5f)
+		if (lerpValue > forestThresh)
 			return (lerpValue, Biome.Forest);
-		if (lerpValue > -0.75f)
+		if (lerpValue > planesThresh)
 			return (lerpValue, Biome.Planes);
-		if (lerpValue >= -1f)
+		if (lerpValue >= swampThresh)
 			return (lerpValue, Biome.Swamp);
 		return (lerpValue, Biome.Planes);
 	}
