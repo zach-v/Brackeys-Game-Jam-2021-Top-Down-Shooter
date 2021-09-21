@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3203890094715336847}
   - component: {fileID: 3203890094715336846}
   - component: {fileID: 3203890094715336841}
-  - component: {fileID: 3203890094715336842}
   - component: {fileID: 3203890094715336843}
   m_Layer: 0
   m_Name: GameCamera
@@ -101,19 +100,6 @@ MonoBehaviour:
   player: {fileID: 0}
   smoothing: 0.1
   offset: {x: 0, y: 12, z: 0}
---- !u!114 &3203890094715336842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3203890094715336845}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 93640e3c74a95e5479f6b79aa23eeecd, type: 2}
 --- !u!114 &3203890094715336843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentQuality: 3
-  behaviour: {fileID: 3203890094715336842}
+  behaviour: {fileID: 0}
   Ultra: {fileID: 11400000, guid: 93640e3c74a95e5479f6b79aa23eeecd, type: 2}
   High: {fileID: 11400000, guid: b138961f9c0d49a4580af0632a9556c5, type: 2}
   Average: {fileID: 11400000, guid: 0212f3f7b26d6f94b9c88e5762264873, type: 2}

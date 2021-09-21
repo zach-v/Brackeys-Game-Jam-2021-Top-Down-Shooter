@@ -71,7 +71,7 @@ public class EnvironmentGenerationManager : MonoBehaviour
 	private Color DetermineColor(float x, float y)
 	{
 		// Get the noise sample and biome tuple
-		(float returnedSample, Biome biome) = biomeManager.GetBiomeAt(new Vector3(x, 0, y));
+		Biome biome = biomeManager.GetBiomeAt(new Vector3(x, 0, y));
 		float perlinNoiseSample = pNoise.Sample2D(x, y);
 		// Determine which color gradient to use
 		switch (biome)

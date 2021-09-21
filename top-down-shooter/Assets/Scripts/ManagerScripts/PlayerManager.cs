@@ -36,7 +36,6 @@ public class PlayerManager : MonoBehaviour
 	[SerializeField] private Slider weaponUsageSlider;
 	[Header("Other Readonlys")]
 	[SerializeField] private Biome currentBiome = Biome.Planes;
-	[ReadOnly] [SerializeField] private float currentPositionValue = 0;
 	[ReadOnly] [SerializeField] private Biome previousBiome = Biome.Void;
 	[ReadOnly] [SerializeField] private bool continueToFire = true;
 	// Audio variables
@@ -255,7 +254,7 @@ public class PlayerManager : MonoBehaviour
 	{
 		while (true)
 		{
-			(currentPositionValue, currentBiome) = biomeManager.GetBiomeAt(transform.position);
+			currentBiome = biomeManager.GetBiomeAt(transform.position);
 			if (previousBiome != currentBiome)
 			{
 				// Stop the current music

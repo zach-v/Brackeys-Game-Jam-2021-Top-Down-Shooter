@@ -40,7 +40,7 @@ public class BiomeManager : MonoBehaviour
 		textureSize = new Vector2Int((int)groundPlane.transform.localScale.x, (int)groundPlane.transform.localScale.y);
 	}
 
-	public (float, Biome) GetBiomeAt(Vector3 position)
+	public Biome GetBiomeAt(Vector3 position)
 	{
 		// Convert x and y to noise space
 		float xCoord = position.x / textureSize.x;
@@ -56,13 +56,13 @@ public class BiomeManager : MonoBehaviour
 		float lerpValue = Mathf.Lerp(0, noiseSample, position.magnitude.Map(0, spawnSafeRadius * 2, 0, 1));
 		// Determine biome
 		if (lerpValue > hellThresh)
-			return (lerpValue, Biome.Hell);
+			return Biome.Hell;
 		if (lerpValue > forestThresh)
-			return (lerpValue, Biome.Forest);
+			return Biome.Forest;
 		if (lerpValue > planesThresh)
-			return (lerpValue, Biome.Planes);
+			return Biome.Planes;
 		if (lerpValue >= swampThresh)
-			return (lerpValue, Biome.Swamp);
-		return (lerpValue, Biome.Planes);
+			return Biome.Swamp;
+		return Biome.Planes;
 	}
 }
