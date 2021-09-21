@@ -13,6 +13,9 @@ public class PlayerMovement : MonoBehaviour
 	public float degreeOffset = 90f;
 	public bool AllowedToMove = true;
 	public bool AllowedToTurn = true;
+	public int chunkScale = 10;
+	public int chunkHorizontalDistance = 10;
+	public int chunkVerticalDistance = 10;
 	[Header("Walking Sound Fields")]
 	[SerializeField] private float TimeToStepSoundJog = 0.9f;
 	[SerializeField] private float TimeToStepSoundRun = 0.5f;
@@ -26,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
 	[ReadOnly] [SerializeField] private Vector3 mousePos;
 	[ReadOnly] [SerializeField] private float angle = 0;
 	[ReadOnly] [SerializeField] private string DisplaySpeed = "0.0";
+	[ReadOnly] [SerializeField] private (int cx, int cz) chunkLocation = (0, 0);
 
 	private void Awake()
 	{
@@ -80,6 +84,12 @@ public class PlayerMovement : MonoBehaviour
 				controller.transform.rotation = Quaternion.Euler(new Vector3(0f, -angle, 0f));
 			}
 		}
+		if (currentChunk(transform.position) != chunkLocation)
+		{
+			chunkLocation = currentChunk(transform.position);
+			// TODO: create a method for checking chunks out of range of player, and chunks in range of player...
+			// adding and removing them from scene accordingly
+		}
 	}
 	void LateUpdate()
 	{
@@ -88,5 +98,11 @@ public class PlayerMovement : MonoBehaviour
 			audioManager.Play("Dirt_Jogging-" + Random.Range(1, numberOfJogSounds+1), Sound.SoundType.Walking);
 			currentTimeToSound = 0;
 		}
+	}
+	private (int, int) currentChunk(Vector3 position)
+	{
+		int x = (int)(position.x / chunkScale);
+		int z = (int)(position.z / chunkScale);
+		return (x, z);
 	}
 }
