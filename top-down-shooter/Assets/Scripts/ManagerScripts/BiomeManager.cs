@@ -11,9 +11,8 @@ public class BiomeManager : MonoBehaviour
 	{
 		Void, Planes, Swamp, Forest, Hell
 	}
+	public EnvironmentGenerationManager evManager;
 	public float spawnSafeRadius = 100;
-	public GameObject groundPlane;
-	[ReadOnly] public Vector2Int textureSize;
 	[Header("Simplex Noise")]
 	public float pFrequency = 5f;
 	public float pAmplitude = 2f;
@@ -35,16 +34,13 @@ public class BiomeManager : MonoBehaviour
 		UnityEngine.Random.InitState(GlobalVariables.seed);
 		// regionCount = Enum.GetNames(typeof(Biome)).Length;
 		simplexNoise = new SimplexNoise(GlobalVariables.seed, pFrequency, pAmplitude);
-
-		// Set texture sizing
-		textureSize = new Vector2Int((int)groundPlane.transform.localScale.x, (int)groundPlane.transform.localScale.y);
 	}
 
 	public Biome GetBiomeAt(Vector3 position)
 	{
 		// Convert x and y to noise space
-		float xCoord = position.x / textureSize.x;
-		float zCoord = position.z / textureSize.y;
+		float xCoord = position.x / evManager.textureSize.x;
+		float zCoord = position.z / evManager.textureSize.y;
 		// Get noise sample
 		float noiseSample = simplexNoise.Sample2D((xCoord + pOffset.x) * pScale, (zCoord + pOffset.y) * pScale);
 		// Check for range

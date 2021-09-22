@@ -1,8 +1,11 @@
 using Assets.Scripts.Components;
 using ProceduralNoiseProject;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using static BiomeManager;
 
 public class EnvironmentGenerationManager : MonoBehaviour
@@ -26,27 +29,36 @@ public class EnvironmentGenerationManager : MonoBehaviour
 	public float wAmplitude = 1f;
 	public float wScale = 1f;
 	public Vector2 wOffset;
+	[Header("Chunk Stuff")]
+	[SerializeField] private Text ChunkStatusText;
+	[SerializeField] private GameObject chunkQuadPrefab;
+	[ReadOnly] public Vector2Int textureSize;
+	[SerializeField] private Shader groundShader;
+	[SerializeField] private Vector3 quadRotationOffset;
+	private Dictionary<(int, int), GameObject> chunkMap;
 	// Private variables
-	private Renderer groundRenderer;
 	private PerlinNoise pNoise;
 	private WorleyNoise wNoise;
 	void Awake()
 	{
+		// Initialize the chunk map
+		chunkMap = new Dictionary<(int, int), GameObject>();
+		// Initialize the noise generation
 		pNoise = new PerlinNoise(GlobalVariables.seed, pFrequency, pAmplitude);
 		wNoise = new WorleyNoise(GlobalVariables.seed, wFrequency, wAmplitude);
+		// Set texture sizing
+		textureSize = new Vector2Int((int)chunkQuadPrefab.transform.localScale.x, (int)chunkQuadPrefab.transform.localScale.y);
 	}
 	void Start()
 	{
 		// Set texture scale
-		newMappedTextureRes = new Vector2Int((int) (biomeManager.textureSize.x * resolutionScale), (int) (biomeManager.textureSize.y * resolutionScale));
-		// Set renderer
-		groundRenderer = biomeManager.groundPlane.GetComponent<Renderer>();
-		StartCoroutine(RenderGroundTexture(groundRenderer));
+		newMappedTextureRes = new Vector2Int((int)(textureSize.x * resolutionScale), (int)(textureSize.y * resolutionScale));
 	}
-	public IEnumerator RenderGroundTexture(Renderer ground)
+	public IEnumerator RenderGroundTexture(GameObject quad)
 	{
-		yield return new WaitForFixedUpdate();
-		ground.material.mainTexture = GenerateTexture(biomeManager.groundPlane.transform);
+		Material groundMat = new Material(Shader.Find("Universal Render Pipeline/Simple Lit"));
+		groundMat.mainTexture = GenerateTexture(quad.transform);
+		quad.GetComponent<Renderer>().material = groundMat;
 		yield break;
 	}
 	private Texture2D GenerateTexture(Transform objectTransform)
@@ -58,8 +70,8 @@ public class EnvironmentGenerationManager : MonoBehaviour
 		{
 			for (int y = 0; y < newMappedTextureRes.y; y++)
 			{
-				float newX = Extensions.Map(x, 0, newMappedTextureRes.x, 0, biomeManager.textureSize.x);
-				float newY = Extensions.Map(y, 0, newMappedTextureRes.y, 0, biomeManager.textureSize.y);
+				float newX = Extensions.Map(x, 0, newMappedTextureRes.x, 0, textureSize.x);
+				float newY = Extensions.Map(y, 0, newMappedTextureRes.y, 0, textureSize.y);
 				// Get color from the biome manager
 				texture.SetPixel(x, y, DetermineColor(newX + (objectTransform.position.x - (objectTransform.localScale.x / 2)),
 					newY + (objectTransform.position.z - (objectTransform.localScale.y / 2))));
@@ -88,5 +100,52 @@ public class EnvironmentGenerationManager : MonoBehaviour
 				return Color.black;
 		}
 		return Color.clear;
+	}
+	public IEnumerator UpdateChunkMap((int, int)[] chunks, int scale)
+	{
+		int j = 0;
+		// Remove the keys not in the list to render
+		(int, int)[] chunksToRemove = chunkMap.Keys.Except(chunks).ToArray();
+		foreach ((int, int) key in chunksToRemove)
+		{
+			try
+			{
+				Destroy(chunkMap[key]);
+				chunkMap.Remove(key);
+			}
+			catch (Exception e)
+			{
+				Debug.Log($"Error while removing chunk: {e.Message}\nStuff can still probably run...");
+			}
+			// Update debug information
+			ChunkStatusText.text = $"Chunk Status: Removing\n{j} out of {chunksToRemove.Length}";
+			yield return null;
+			j++;
+		}
+		int i = 0;
+		// Search the list of chunks
+		foreach ((int x, int z) chunk in chunks)
+		{
+			// If it's not in the list of chunks
+			if (!chunkMap.ContainsKey(chunk))
+			{
+				// Change from chunk space to world space
+				float anchorOffset = scale * 2.0f;
+				float xPos = chunk.x * anchorOffset;
+				float zPos = chunk.z * anchorOffset;
+				Vector3 chunkPosition = new Vector3(xPos + anchorOffset, 0, zPos + anchorOffset);
+				Quaternion rotation = Quaternion.Euler(transform.rotation.eulerAngles + quadRotationOffset);
+				// Create new chunk
+				GameObject newChunk = Instantiate(chunkQuadPrefab, chunkPosition, rotation, transform);
+				StartCoroutine(RenderGroundTexture(newChunk));
+				chunkMap.Add(chunk, newChunk);
+			}
+			// Update debug information
+			ChunkStatusText.text = $"Chunk Status: Rendering\n{i} out of {chunks.Length}";
+			yield return null;
+			i++;
+		}
+		ChunkStatusText.text = $"Chunk Status: Ready!";
+		yield break;
 	}
 }

@@ -13,25 +13,26 @@ public class PlayerMovement : MonoBehaviour
 	public float degreeOffset = 90f;
 	public bool AllowedToMove = true;
 	public bool AllowedToTurn = true;
+	[Header("Chunk Stuff")]
 	public int chunkScale = 10;
 	public int chunkHorizontalDistance = 10;
 	public int chunkVerticalDistance = 10;
+	public EnvironmentGenerationManager evgManager;
+	[ReadOnly] [SerializeField] private (int cx, int cz) chunkLocation = (1, 1);
 	[Header("Walking Sound Fields")]
 	[SerializeField] private float TimeToStepSoundJog = 0.9f;
 	[SerializeField] private float TimeToStepSoundRun = 0.5f;
 	[ReadOnly] [SerializeField] private int numberOfJogSounds = 0;
 	[ReadOnly] [SerializeField] private int numberOfRunSounds = 0;
 	[ReadOnly] [SerializeField] private float currentTimeToSound = 0;
-
 	[Header("Internal Variables")]
 	private float currentSpeed = 0;
 	[ReadOnly] public Vector2 movement;
 	[ReadOnly] [SerializeField] private Vector3 mousePos;
 	[ReadOnly] [SerializeField] private float angle = 0;
 	[ReadOnly] [SerializeField] private string DisplaySpeed = "0.0";
-	[ReadOnly] [SerializeField] private (int cx, int cz) chunkLocation = (0, 0);
 
-	private void Awake()
+	void Awake()
 	{
 		// Populate random sound list
 		foreach (Sound s in audioManager.walkingSounds)
@@ -46,6 +47,11 @@ public class PlayerMovement : MonoBehaviour
 			}
 		}
 	}
+	void Start()
+	{
+		// Generate initial chunks at the start
+		checkNearbyChunks(chunkLocation);
+	}
 	void Update()
 	{
 		movement.x = Input.GetAxisRaw("Horizontal");
@@ -53,7 +59,6 @@ public class PlayerMovement : MonoBehaviour
 
 		mousePos = Input.mousePosition;
 	}
-
 	void FixedUpdate()
 	{
 		// Store current movement variables
@@ -87,15 +92,14 @@ public class PlayerMovement : MonoBehaviour
 		if (currentChunk(transform.position) != chunkLocation)
 		{
 			chunkLocation = currentChunk(transform.position);
-			// TODO: create a method for checking chunks out of range of player, and chunks in range of player...
-			// adding and removing them from scene accordingly
+			checkNearbyChunks(chunkLocation);
 		}
 	}
 	void LateUpdate()
 	{
 		if (currentTimeToSound >= TimeToStepSoundJog)
 		{
-			audioManager.Play("Dirt_Jogging-" + Random.Range(1, numberOfJogSounds+1), Sound.SoundType.Walking);
+			audioManager.Play("Dirt_Jogging-" + Random.Range(1, numberOfJogSounds + 1), Sound.SoundType.Walking);
 			currentTimeToSound = 0;
 		}
 	}
@@ -104,5 +108,25 @@ public class PlayerMovement : MonoBehaviour
 		int x = (int)(position.x / chunkScale);
 		int z = (int)(position.z / chunkScale);
 		return (x, z);
+	}
+	private void checkNearbyChunks((int x, int z) location)
+	{
+		if (evgManager != null)
+		{
+			// Create an empty list to use as keys
+			List<(int, int)> chunks = new List<(int, int)>();
+			// Get half the render distance
+			int cxHalf = (chunkHorizontalDistance / 2);
+			int czHalf = (chunkVerticalDistance / 2);
+			// Populate the list with our new render location
+			for (int a = location.x - cxHalf; a <= location.x + cxHalf; a++)
+			{
+				for (int b = location.z - czHalf; b <= location.z + czHalf; b++)
+				{
+					chunks.Add((a, b));
+				}
+			}
+			StartCoroutine(evgManager.UpdateChunkMap(chunks.ToArray(), chunkScale));
+		}
 	}
 }

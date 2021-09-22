@@ -28,6 +28,7 @@ public class PlayerManager : MonoBehaviour
 	[ReadOnly] [SerializeField] private List<Grenade> grenadeInventory;
 	[ReadOnly] [SerializeField] private List<Item> itemInventory;
 	[Header("UI Interaction")]
+	[SerializeField] private GameObject DebugCanvas;
 	[SerializeField] private GameObject InventoryCanvas;
 	[SerializeField] private FlexibleGridLayout GunTableGrid;
 	[SerializeField] private FlexibleGridLayout GrenadeTableGrid;
@@ -43,6 +44,7 @@ public class PlayerManager : MonoBehaviour
 	[ReadOnly] [SerializeField] private Sound[] CurrentAmbience;
 	private bool playNewAmbience = false;
 	private int frogSoundCount = 0;
+	private bool toggleDebug = true;
 	#endregion
 	public PlayerManager()
 	{
@@ -89,6 +91,20 @@ public class PlayerManager : MonoBehaviour
 			audioManager.ChangeFilterState(AudioManager.FilterState.Normal);
 		}
 		UpdateWeaponTimes();
+		// Debug toggle
+		if (Input.GetKeyDown(KeyCode.F3))
+		{
+			if (toggleDebug)
+			{
+				GlobalVariables.debugOn = !GlobalVariables.debugOn;
+				DebugCanvas.SetActive(GlobalVariables.debugOn);
+				toggleDebug = false;
+			}
+		}
+		if (Input.GetKeyUp(KeyCode.F3))
+		{
+			toggleDebug = true;
+		}
 	}
 	private void UpdateWeaponTimes()
 	{
